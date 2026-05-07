@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Week 1 — Idea Approved & Initial Planning"
+title: "Meeting 1 — Idea Approved & Initial Planning"
 date: 2026-05-07
 week: 1
 status: "Approved"
@@ -19,7 +19,7 @@ This week we completed concept validation and aligned on early planning prioriti
 The team focused on project scope clarity, feasibility thinking, and architecture brainstorming rather than full implementation.
 
 <div class="callout">
-<strong>Week 1 outcome:</strong> approved direction + planning baseline for next-stage requirements and design work.
+<strong>Meeting 1 topic:</strong> approved direction + planning baseline for next-stage requirements and design work.
 </div>
 
 ## Project Direction
