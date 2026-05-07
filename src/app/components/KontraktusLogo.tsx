@@ -30,8 +30,8 @@ function ClauseStackMark({ inverse }: { inverse: boolean }) {
       <rect x="10.9" y="10.82" width="67.42" height="60.92" rx={10.82} ry={10.82} stroke={z[1].c} strokeWidth={z[1].sw} fill="none" opacity={z[1].o} />
       <rect x="14.72" y="14.62" width="67.42" height="60.92" rx={10.56} ry={10.56} stroke={z[2].c} strokeWidth={z[2].sw} fill="none" opacity={z[2].o} />
       <rect fill={ink} x={17.35} y={23.55} width={12.55} height={49.15} rx={4.72} ry={4.72} />
-      <path fill={ink} d="M30.12 35.62 L70.42 20.05 L70.42 33.38 L42.92 53.28 L30.12 43.18 Z" />
-      <path fill={ink} d="M30.12 46.88 L71.02 71.02 L71.02 57.58 L43.92 53.38 L30.12 46.88 Z" />
+      <path fill={ink} d="M29.9 34.84 L70.42 19.86 L70.42 33.14 L43.48 52.42 L29.9 42.58 Z" />
+      <path fill={ink} d="M29.9 47.04 L71.02 71.02 L71.02 57.54 L43.48 53.76 L29.9 47.04 Z" />
       <path stroke={leg} opacity={inverse ? 0.42 : 0.44} strokeWidth={1.38} strokeLinecap="round" fill="none" d="M20.05 71.92 H43.42" />
       <path stroke={acc} opacity={inverse ? 0.88 : 0.86} strokeWidth={1.38} strokeLinecap="round" fill="none" d="M43.58 71.92 H53.65" />
       <rect x={52.92} y={71.42} width={2.05} height={1.08} rx={0.42} fill={acc} opacity={inverse ? 0.88 : 0.86} />
