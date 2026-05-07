@@ -7,33 +7,61 @@
     <meta name="description" content="{{ page.summary | default: site.description }}" />
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
   </head>
-  <body class="theme-dark">
-    <main class="container post-page">
-      <a class="back-link" href="{{ '/' | relative_url }}">← Back to weekly updates</a>
-
-      <article class="post-card">
-        <header class="post-header">
-          <div class="post-meta-row">
-            <span class="chip">Week {{ page.week }}</span>
-            <span class="chip chip-status">{{ page.status }}</span>
-            <span class="chip chip-muted">{{ page.date | date: '%b %d, %Y' }}</span>
+  <body>
+    <main class="container">
+      <header class="masthead">
+        <div class="brandlock">
+          <div class="brandmark" aria-hidden="true">
+            <img src="{{ '/assets/brand/kontraktus-mark.svg' | relative_url }}" alt="" />
           </div>
-          <h1>{{ page.title }}</h1>
-          {% if page.summary %}
-          <p class="summary">{{ page.summary }}</p>
-          {% endif %}
-        </header>
+          <div class="brandtitle">
+            <h1>Kontraktus</h1>
+            <p class="sub">Private AI Contract Intelligence Platform</p>
+            <p class="meta">CSIT321 Capstone Project · University of Wollongong Dubai</p>
+          </div>
+        </div>
+        <div class="badge-row">
+          <span class="chip">Week {{ page.week }}</span>
+          <span class="chip chip-status">{{ page.status }}</span>
+          <span class="chip chip-muted">{{ page.date | date: '%b %d, %Y' }}</span>
+        </div>
+      </header>
 
-        <section class="post-content">{{ content }}</section>
+      <div class="layout">
+        <aside class="rail">
+          <div class="railcard">
+            <h2>Navigation</h2>
+            <ul class="navlist">
+              <li>
+                <a href="{{ '/' | relative_url }}">
+                  <span class="navnum">←</span><span class="navlabel">Back to dashboard</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
 
-        {% if page.tags %}
-        <footer class="post-tags">
-          {% for tag in page.tags %}
-          <span class="tag">#{{ tag }}</span>
-          {% endfor %}
-        </footer>
-        {% endif %}
-      </article>
+        <div class="main">
+          <article class="panel post-card">
+            <header class="post-header">
+              <h1>{{ page.title }}</h1>
+              {% if page.summary %}
+              <p class="summary">{{ page.summary }}</p>
+              {% endif %}
+            </header>
+
+            <section class="post-content">{{ content }}</section>
+
+            {% if page.tags %}
+            <footer class="post-tags-inline">
+              {% for tag in page.tags %}
+              <span class="tag">#{{ tag }}</span>
+              {% endfor %}
+            </footer>
+            {% endif %}
+          </article>
+        </div>
+      </div>
     </main>
   </body>
 </html>
