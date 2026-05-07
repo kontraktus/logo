@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="120" viewBox="0 0 800 120" fill="none" role="img" aria-labelledby="t">
+  <title id="t">Kontraktus Direction A horizontal on light surfaces</title>
+  <defs>
+    <style><![CDATA[
+      .wm{fill:#0d0f11;font-family:Lato,Lato SemiBold,Lato-Bold,'DejaVu Sans',Arial,sans-serif;font-size:52px;font-weight:700;letter-spacing:-0.062em;}
+    ]]></style>
+  </defs>
+  <!-- Rounded stem + trapezoid clause planes + grid telemetry + fold wedge -->
+  <g transform="translate(30,19)">
+    <rect fill="#0d0f11" x="17" y="23" width="13.85" height="49.95" rx="5.35" ry="5.35"/>
+    <path fill="#0d0f11" d="M30.92 36.08 L71.75 19.92 L71.75 33.58 L43.94 53.95 L31 43.94 Z"/>
+    <path fill="#0d0f11" d="M31 46.52 L71.76 71.68 L71.76 56.94 L44.58 53.95 L31 46.52 Z"/>
+    <path stroke="#2f6bff" stroke-width="1.15" opacity="0.34" stroke-linecap="round" fill="none" d="M59.35 31.75 L71.35 54.85"/>
+    <rect fill="#2f6bff" x="54.08" y="17.05" width="5.08" height="5.08" rx="1.22"/>
+    <rect fill="#2f6bff" x="54.08" y="26.42" width="5.08" height="5.08" rx="1.22" opacity="0.58"/>
+    <path fill="#2f6bff" opacity="0.92" d="M41.9 52.25 L53.94 61.82 L53.08 62.98 L41.93 53.92 Z"/>
+  </g>
+  <text class="wm" x="142" y="77">Kontraktus</text>
+</svg>

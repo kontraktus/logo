@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none" role="img" aria-labelledby="t">
+  <title id="t">Kontraktus Dir C app icon light</title>
+  <g transform="translate(114,117) scale(6)">
+    <rect x="7" y="7" width="66" height="60" rx="11" stroke="#cdd6e8" stroke-width="1.65" fill="none" opacity="0.95"/>
+    <rect x="12" y="11" width="66" height="60" rx="10.5" stroke="#b4c2d9" stroke-width="1.35" fill="none" opacity="0.7"/>
+    <rect x="17" y="15" width="66" height="60" rx="10" stroke="#9aaab8" stroke-width="1.05" fill="none" opacity="0.48"/>
+    <rect fill="#0d0f11" x="17" y="23" width="13.85" height="49.95" rx="5.35" ry="5.35"/>
+    <path fill="#0d0f11" d="M30.92 36.08 L71.75 19.92 L71.75 33.58 L43.94 53.95 L31 43.94 Z"/>
+    <path fill="#0d0f11" d="M31 46.52 L71.76 71.68 L71.76 56.94 L44.58 53.95 L31 46.52 Z"/>
+    <path stroke="#9dabbc" opacity="0.52" stroke-width="2.05" stroke-linecap="round" fill="none" d="M19.5 71.95 H53.95"/>
+  </g></svg>

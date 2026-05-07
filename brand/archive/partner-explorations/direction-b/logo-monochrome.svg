@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="120" viewBox="0 0 800 120" fill="none" role="img" aria-labelledby="t">
+  <title id="t">Kontraktus Dir B monochrome</title>
+  <defs>
+    <style><![CDATA[
+      .wm{fill:#0d0f11;font-family:Lato,Lato SemiBold,Lato-Bold,'DejaVu Sans',Arial,sans-serif;font-size:52px;font-weight:700;letter-spacing:-0.062em}
+    ]]></style>
+  </defs>
+    <g transform="translate(26,21)">
+    <path d="M22 77V17.5 M22 47.5 L63.15 76.35 M22 47.5 L63.15 14.95" stroke="#000" stroke-width="9.85" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="22" cy="47.5" r="5.55" fill="#000" opacity="0.42"/>
+    <circle cx="63.15" cy="76.35" r="4.55" fill="#000" opacity="0.32"/>
+    <circle cx="63.15" cy="14.95" r="4.55" fill="#000" opacity="0.24"/>
+    <path d="M28.5 71.5 L53.95 61.95" stroke="#000" opacity="0.22" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="22" cy="47.5" r="10.4" stroke="#000" opacity="0.12" stroke-width="1.2" fill="none"/>
+  </g>
+  <text class="wm" x="142" y="77">Kontraktus</text></svg>

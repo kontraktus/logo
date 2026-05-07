@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none" role="img" aria-labelledby="t">
+  <title id="t">Kontraktus Dir B circle dark</title>
+  <circle cx="256" cy="256" r="248" fill="#080a10" stroke="#1a2233" stroke-width="2"/>
+  <g transform="translate(114,117) scale(6)">
+    <path d="M22 77V17.5 M22 47.5 L63.15 76.35 M22 47.5 L63.15 14.95" stroke="#f4f6fb" stroke-width="9.85" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="22" cy="47.5" r="5.55" fill="#6fa3ff"/>
+    <circle cx="63.15" cy="76.35" r="4.55" fill="#6fa3ff"/>
+    <circle cx="63.15" cy="14.95" r="4.55" fill="#6fa3ff" opacity="0.48"/>
+    <circle cx="22" cy="47.5" r="10.4" stroke="#6fa3ff" opacity="0.13" stroke-width="1.2" fill="none"/>
+    <path d="M28.5 71.5 L53.95 61.95" stroke="#6fa3ff" opacity="0.42" stroke-width="2" stroke-linecap="round"/>
+  </g></svg>
