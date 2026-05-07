@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="120" viewBox="0 0 800 120" fill="none" role="img" aria-labelledby="t">
+  <title id="t">Kontraktus Dir D horizontal light</title>
+  <defs>
+    <style><![CDATA[
+      .wm{fill:#0d0f11;font-family:Lato,Lato SemiBold,Lato-Bold,'DejaVu Sans',Arial,sans-serif;font-size:52px;font-weight:700;letter-spacing:-0.062em}
+    ]]></style>
+  </defs>
+  <g transform="translate(26,21)">
+    <path d="M57.92 73.92 A 50.95 50.95 0 0 1 72.92 31.92" stroke="#18ccc7" fill="none" stroke-width="3.15" opacity="0.36" stroke-dasharray="9.5 14" stroke-linecap="round"/>
+    <rect fill="#0d0f11" x="17" y="23" width="13.85" height="49.95" rx="5.35" ry="5.35"/>
+    <path fill="#0d0f11" d="M30.92 36.08 L71.75 19.92 L71.75 33.58 L43.94 53.95 L31 43.94 Z"/>
+    <path fill="#0d0f11" d="M31 46.52 L71.76 71.68 L71.76 56.94 L44.58 53.95 L31 46.52 Z"/>
+    <circle cx="62.92" cy="36.92" r="3.92" fill="#18ccc7" opacity="0.96"/>
+  </g>
+  <text class="wm" x="142" y="77">Kontraktus</text></svg>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="14 16 74 74" fill="none" role="img" aria-labelledby="t">
+  <title id="t">Kontraktus Direction A minimal wordless mark</title>
+  <rect fill="#0d0f11" x="17" y="23" width="13.85" height="49.95" rx="5.35" ry="5.35"/>
+  <path fill="#0d0f11" d="M30.92 36.08 L71.75 19.92 L71.75 33.58 L43.94 53.95 L31 43.94 Z"/>
+  <path fill="#0d0f11" d="M31 46.52 L71.76 71.68 L71.76 56.94 L44.58 53.95 L31 46.52 Z"/>
+  <rect fill="#2f6bff" x="54.08" y="17.05" width="5.08" height="5.08" rx="1.22"/>
+  <rect fill="#2f6bff" x="54.08" y="26.42" width="5.08" height="5.08" rx="1.22" opacity="0.52"/>
+</svg>

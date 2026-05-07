@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="120" viewBox="0 0 800 120" fill="none" role="img" aria-labelledby="t">
+  <title id="t">Kontraktus horizontal (light UI)</title>
+  <defs>
+    <style><![CDATA[
+      .wm{fill:#080a0f;font-family:"IBM Plex Sans",Inter,Lato,Lato SemiBold,"DejaVu Sans",system-ui,sans-serif;font-weight:600;font-size:50px;letter-spacing:-0.072em}
+    ]]></style>
+  </defs>
+  <g transform="translate(28,21)">
+    <rect x="7.05" y="7" width="67.42" height="60.92" rx="11.08" ry="11.08" stroke="#ebeff9" stroke-width="1.1" fill="none" opacity="0.52"/>
+    <rect x="10.9" y="10.82" width="67.42" height="60.92" rx="10.82" ry="10.82" stroke="#d7e1ef" stroke-width="1.02" fill="none" opacity="0.36"/>
+    <rect x="14.72" y="14.62" width="67.42" height="60.92" rx="10.56" ry="10.56" stroke="#aab8cc" stroke-width="0.92" fill="none" opacity="0.52"/>
+    <rect fill="#080a0f" x="17.35" y="23.55" width="12.55" height="49.15" rx="4.72" ry="4.72"/>
+    <path fill="#080a0f" d="M30.12 35.62 L70.42 20.05 L70.42 33.38 L42.92 53.28 L30.12 43.18 Z"/>
+    <path fill="#080a0f" d="M30.12 46.88 L71.02 71.02 L71.02 57.58 L43.92 53.38 L30.12 46.88 Z"/>
+    <path stroke="#c5cedd" opacity="0.44" stroke-width="1.38" stroke-linecap="round" fill="none" d="M20.05 71.92 H43.42"/>
+    <path stroke="#3458e6" opacity="0.86" stroke-width="1.38" stroke-linecap="round" fill="none" d="M43.58 71.92 H53.65"/>
+    <rect x="52.92" y="71.42" width="2.05" height="1.08" rx="0.42" fill="#3458e6" opacity="0.86"/>
+  </g>
+  <text class="wm" x="140" y="76">Kontraktus</text></svg>

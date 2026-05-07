@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" fill="none" role="img" aria-labelledby="t">
+  <title id="t">Kontraktus Dir C icon minimal</title>
+  <g transform="translate(56,114) scale(3.78)">
+    <rect x="7" y="7" width="66" height="60" rx="11" stroke="#cdd6e8" stroke-width="1.65" fill="none" opacity="0.92"/>
+    <rect x="12" y="11" width="66" height="60" rx="10.5" stroke="#b4c2d9" stroke-width="1.35" fill="none" opacity="0.64"/>
+    <rect fill="#0d0f11" x="17" y="23" width="13.85" height="49.95" rx="5.35" ry="5.35"/>
+    <path fill="#0d0f11" d="M30.92 36.08 L71.75 19.92 L71.75 33.58 L43.94 53.95 L31 43.94 Z"/>
+    <path fill="#0d0f11" d="M31 46.52 L71.76 71.68 L71.76 56.94 L44.58 53.95 L31 46.52 Z"/>
+  </g></svg>

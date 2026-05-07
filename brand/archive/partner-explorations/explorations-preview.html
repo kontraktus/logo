@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kontraktus · explorations archive</title>
+    <style>
+      :root {
+        --ink: #0d0f12;
+        --muted: #64748b;
+        --hair: #e2e8f0;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        color: var(--ink);
+        background: #fafafa;
+        line-height: 1.45;
+      }
+      header {
+        padding: 0.85rem 1.25rem;
+        border-bottom: 1px solid var(--hair);
+        background: rgba(250, 250, 250, 0.95);
+        backdrop-filter: blur(10px);
+        position: sticky;
+        top: 0;
+        z-index: 5;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 1.05rem;
+        font-weight: 650;
+      }
+      .sub {
+        margin: 0.45rem 0 0;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+      .sub a {
+        font-weight: 600;
+        color: #2563eb;
+      }
+      nav {
+        margin-top: 0.65rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem 0.75rem;
+        font-size: 0.8rem;
+      }
+      nav a {
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+      section {
+        margin-bottom: 2.25rem;
+      }
+      section h2 {
+        margin: 0 0 0.75rem;
+        font-size: 1.08rem;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(278px, 1fr));
+        gap: 0.75rem;
+      }
+      figure {
+        margin: 0;
+        border: 1px solid var(--hair);
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
+      }
+      figcaption {
+        font-size: 0.65rem;
+        color: var(--muted);
+        padding: 0.4rem 0.6rem 0.6rem;
+      }
+      .pad {
+        min-height: 110px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem;
+      }
+      .light {
+        background: linear-gradient(180deg, #fff 0%, #eef2f7 100%);
+      }
+      .dark {
+        background: radial-gradient(circle at 30% 20%, #1e293b 0%, #0d0f12 70%);
+      }
+      .mid {
+        background: #94a3b8;
+      }
+      figure img {
+        max-width: 100%;
+        height: auto;
+      }
+      .big .pad {
+        min-height: 170px;
+      }
+      .big img {
+        max-height: 150px;
+        width: auto;
+      }
+      .fz .pad {
+        min-height: 88px;
+      }
+      .fz img {
+        width: 64px;
+        height: 64px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Partner explorations (archived directions)</h1>
+      <p class="sub">
+        Retained art from earlier concepts. Canonical brand lives in <a href="../../preview.html">brand/preview.html</a> (<code>brand/primary/</code>). Batch export of superseded Direction C files is in <code>direction-c-batch-export/</code>.
+      </p>
+      <nav>
+        <a href="#a">A</a>
+        <a href="#b">B</a>
+        <a href="#c">C batch</a>
+        <a href="#d">D</a>
+        <a href="#e">E</a>
+      </nav>
+    </header>
+    <main>
+      <section id="a">
+        <h2>Direction A · geometric telemetry</h2>
+        <div class="grid" data-dir="direction-a"></div>
+      </section>
+      <section id="b">
+        <h2>Direction B · routing backbone</h2>
+        <div class="grid" data-dir="direction-b"></div>
+      </section>
+      <section id="c">
+        <h2>Direction C · pre-primary batch export</h2>
+        <div class="grid" data-dir="direction-c-batch-export"></div>
+      </section>
+      <section id="d">
+        <h2>Direction D · sweep</h2>
+        <div class="grid" data-dir="direction-d"></div>
+      </section>
+      <section id="e">
+        <h2>Direction E · ultra wedge</h2>
+        <div class="grid" data-dir="direction-e"></div>
+      </section>
+    </main>
+    <script>
+      const assets = [
+        ['logo-horizontal-on-light.svg', 'light', ''],
+        ['logo-horizontal-on-dark.svg', 'dark', 'inverse'],
+        ['logo-stacked-on-light.svg', 'light', ''],
+        ['logo-stacked-on-dark.svg', 'dark', ''],
+        ['icon-square-on-light.svg', 'light', 'big'],
+        ['icon-square-on-dark.svg', 'mid', 'big'],
+        ['icon-circle-on-light.svg', 'light', 'big'],
+        ['icon-circle-on-dark.svg', 'dark', 'big'],
+        ['icon-only-minimal.svg', 'light', 'big'],
+        ['logo-monochrome.svg', 'light', ''],
+        ['favicon-on-light.svg', 'light', 'fz'],
+        ['favicon-on-dark.svg', 'dark', 'fz'],
+      ];
+
+      document.querySelectorAll('[data-dir]').forEach((el) => {
+        const dir = el.getAttribute('data-dir');
+        const frag = document.createDocumentFragment();
+        for (const [file, surf, klass] of assets) {
+          const fig = document.createElement('figure');
+          if (klass) fig.className = klass;
+          const pad = document.createElement('div');
+          pad.className = 'pad ' + surf;
+          const img = document.createElement('img');
+          img.src = './' + dir + '/' + file;
+          img.loading = 'lazy';
+          pad.appendChild(img);
+          const cap = document.createElement('figcaption');
+          cap.textContent = dir + '/' + file;
+          fig.appendChild(pad);
+          fig.appendChild(cap);
+          frag.appendChild(fig);
+        }
+        el.appendChild(frag);
+      });
+    </script>
+  </body>
+</html>

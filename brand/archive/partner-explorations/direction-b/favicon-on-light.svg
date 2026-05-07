@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="t">
+  <title id="t">Kontraktus Dir B favicon light</title>
+  <rect width="64" height="64" rx="15" fill="#ffffff"/>
+  <g transform="translate(5.85,7) scale(0.734)">
+    <path d="M22 77V17.5 M22 47.5 L63.15 76.35 M22 47.5 L63.15 14.95" stroke="#0d0f11" stroke-width="9.85" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="22" cy="47.5" r="5.55" fill="#2f6bff"/>
+    <circle cx="63.15" cy="76.35" r="4.55" fill="#2f6bff"/>
+    <circle cx="63.15" cy="14.95" r="4.55" fill="#2f6bff" opacity="0.48"/>
+    <circle cx="22" cy="47.5" r="10.4" stroke="#2f6bff" opacity="0.13" stroke-width="1.2" fill="none"/>
+    <path d="M28.5 71.5 L53.95 61.95" stroke="#2f6bff" opacity="0.3" stroke-width="2" stroke-linecap="round"/>
+  </g></svg>

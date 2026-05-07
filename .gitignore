@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+*.local
+
+# Logs & caches
+npm-debug.log*
+pnpm-debug.log*
+*.log
+
+# Env
+.env
+.env.*.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Vite / tooling caches (if present)
+.vite/
+.cache/
