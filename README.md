@@ -1,23 +1,23 @@
-# Kontraktus Weekly Updates (GitHub Pages + Jekyll)
+# Kontraktus Weekly Capstone Journal (GitHub Pages)
 
-This repository powers the capstone update site for our professor at:
+This repository hosts the **Kontraktus weekly capstone update journal** on GitHub Pages.
 
-- **https://gh.kontraktus.app**
+- Site: **https://gh.kontraktus.app**
+- Purpose: supervisor-facing CSIT321 engineering progress dashboard + weekly updates archive
+- Homepage: root update dashboard (not a marketing landing page)
 
-The root page is intentionally the update tracker/blog index (not a startup landing page).
+## Repository structure
 
-## Site structure
+- `_config.yml` — Jekyll site configuration
+- `index.html` — root operations dashboard + latest update + timeline + archive
+- `_posts/` — weekly Markdown updates
+- `_layouts/post.html` — shared post layout
+- `assets/css/style.css` — dark dashboard styles
+- `CNAME` — custom domain mapping for GitHub Pages
 
-- `_config.yml` — Jekyll site config
-- `index.html` — homepage/blog index and progress dashboard sections
-- `_posts/` — weekly updates in Markdown
-- `_layouts/post.html` — post template
-- `assets/css/style.css` — visual style (dark legal-tech SaaS look)
-- `CNAME` — custom domain for GitHub Pages
+## How to add weekly posts
 
-## 1) How to add a new weekly post
-
-Create a new file in `_posts` with this naming pattern:
+Create a new Markdown file in `_posts` using:
 
 ```text
 YYYY-MM-DD-week-X-title.md
@@ -29,56 +29,50 @@ Example:
 2026-05-14-week-2-proxmox-setup.md
 ```
 
-Each post must include front matter:
+### Required front matter format
 
 ```yaml
 ---
 layout: post
-title:
-date:
-week:
-status:
-tags:
-summary:
+title: "Week X Update — Title"
+date: YYYY-MM-DD
+week: X
+status: "Planned / In Progress / Completed"
+tags: [Capstone, AI, Contracts]
+summary: "Short summary here."
 ---
 ```
 
-Then write your weekly content below the front matter.
+Then add the weekly content below front matter.
 
-## 2) Where to edit styles
+## How GitHub Pages builds this site
 
-All visual styling is in:
+This site is Jekyll-based and GitHub Pages compatible:
 
-- `assets/css/style.css`
+- Posts in `_posts` are converted from Markdown to HTML.
+- `index.html` uses Liquid (`site.posts`) to render the weekly update archive (newest first).
+- Pushes to `main` are automatically built/deployed by GitHub Pages.
 
-You can customize cards, timeline blocks, badges, pipeline chips, post callouts, and progress bars there.
+No backend, database, or server-side runtime is required.
 
-## 3) How GitHub Pages builds the site
+## Custom domain handling
 
-This project uses **Jekyll** (native GitHub Pages support):
-
-- Markdown files in `_posts` are converted into blog posts.
-- `index.html` uses Liquid to list posts from newest to oldest.
-- Any push to `main` triggers GitHub Pages build/deploy.
-
-No backend or database is required.
-
-## 4) How to keep the custom domain
-
-The `CNAME` file must remain in repository root with:
+Keep `CNAME` in repository root with:
 
 ```text
 gh.kontraktus.app
 ```
 
-Do not delete this file, or the custom domain mapping may break.
+If this file is removed or changed, custom domain routing can break.
 
 ## Local preview (optional)
 
-If Ruby/Jekyll is available locally:
+If Jekyll is installed locally:
 
 ```bash
 bundle exec jekyll serve
 ```
 
-Or rely on GitHub Pages deployment after pushing.
+Then open the local address printed by Jekyll.
+
+If not, push to GitHub and verify the Pages build output there.

@@ -1,66 +1,77 @@
 ---
 layout: post
-title: "Week 1 Update — Kontraktus Has Been Approved"
+title: "Week 1 Update — Kontraktus Approved"
 date: 2026-05-07
 week: 1
 status: "Approved"
 tags: [Capstone, AI, Contracts, RAG, Local AI]
-summary: "The Kontraktus idea was approved as our capstone project. This update explains the MVP direction, technical approach, infrastructure plan, and long-term vision."
+summary: "Kontraktus was approved as our CSIT321 capstone. This week we finalized project direction, local RAG architecture, infrastructure plan, and immediate MVP milestones."
 ---
 
-# Week 1 Update — Kontraktus Has Been Approved
+## Overview
 
-This week, our capstone project direction was officially confirmed. Out of the ideas we presented, the approved project is **Kontraktus**, a private AI-powered contract intelligence platform.
+Kontraktus has been approved as our CSIT321 capstone project.
+The project is a private AI-powered contract intelligence platform focused on local processing, citation-grounded answers, and risk-aware contract review.
 
-The goal of Kontraktus is not to build a simple “chat with PDF” tool. Our vision is to create a system that helps organizations understand contracts faster, identify important clauses, detect risks, and retrieve answers with clear source citations.
+## What Happened This Week
 
-## What Kontraktus Will Do
+This week we finalized the project selection, confirmed the MVP boundaries, and aligned on an architecture-first execution plan.
 
-Kontraktus will allow users to upload contracts such as PDF, DOCX, or TXT files. The system will extract the text, divide the contract into meaningful sections, store those sections in a searchable knowledge base, and use a local AI model to answer questions based only on the uploaded document.
+<div class="callout">
+<strong>Week 1 result:</strong> Approved project direction + technical baseline for implementation.
+</div>
 
-The key principle is privacy. Contract data should remain inside the local environment instead of being uploaded to external cloud AI services.
+## Project Direction
 
-## Initial Technical Approach
+Kontraktus is not intended to behave like a normal chatbot.
+The system is designed to retrieve relevant contract clauses first, then produce an answer using only those retrieved clauses.
 
-Our first MVP will focus on the core AI pipeline:
+The objective is reliable, auditable contract intelligence rather than generic conversational responses.
 
-1. Upload contract documents
-2. Extract text from PDF, DOCX, or TXT files
-3. Split the contract into smaller chunks
-4. Generate embeddings for semantic search
-5. Store the chunks in a vector database
-6. Retrieve relevant clauses when a user asks a question
-7. Use a local LLM to generate an answer
-8. Show citations from the original contract
+## Technical Approach
 
-This approach is known as RAG, or Retrieval-Augmented Generation. Instead of allowing the AI to guess, the system retrieves the relevant contract clauses first, then asks the AI to answer using only that context.
+The first MVP follows a local RAG workflow:
 
-## Planned Infrastructure
+1. Upload contract documents (PDF, DOCX, TXT)
+2. Extract text
+3. Chunk by meaningful sections
+4. Generate embeddings
+5. Store chunks in a vector database
+6. Retrieve relevant clauses
+7. Analyze using a local LLM
+8. Return answers with citations
 
-We plan to deploy the prototype on a local Proxmox machine. The current hardware available to us is an i7 12th generation laptop with 16GB RAM.
+<div class="diagram">
+Upload → Extract → Chunk → Embed → Retrieve → Analyze → Cite
+</div>
 
-The proposed setup is:
+## Infrastructure Plan
 
-- **kontraktus-ai** — local AI engine using Ollama, Python, LangChain/LlamaIndex, and ChromaDB
-- **kontraktus-web** — web interface for uploads, questions, answers, citations, and risk results
-- **kontraktus-docs** — optional document management/OCR layer using Paperless-ngx
-- **database layer** — for storing contracts, risks, users, audit logs, and future workflows
+Deployment target is a local Proxmox machine.
+Current test hardware: <strong>i7 12th Gen laptop, 16GB RAM</strong>.
 
-## Product Vision
+Planned service containers:
 
-The long-term vision is to make Kontraktus a modular contract intelligence platform. The core system will remain general, but different industries can later have specialized dashboards and rule sets.
+- <strong>kontraktus-ai</strong> — Ollama, Python, LangChain/LlamaIndex, ChromaDB, RAG orchestration
+- <strong>kontraktus-web</strong> — dashboard for uploads, Q&amp;A, citations, and risk register
+- <strong>kontraktus-docs</strong> — optional Paperless-ngx layer for OCR/document organization
+- <strong>database layer</strong> — contracts, risks, users, audit logs, and future workflow records
 
-For example:
+## Long-Term Vision
 
-- Real estate companies may need lease renewal tracking and maintenance contract monitoring.
-- Construction companies may need payment terms, delay notices, retention, and subcontractor risk tracking.
-- Legal teams may need clause review, liability checks, and dispute resolution analysis.
-- Procurement teams may need vendor contract comparison and obligation tracking.
+Kontraktus should remain a general contract intelligence platform, while allowing domain-specific interfaces and risk libraries over time.
 
-This allows Kontraktus to start as a capstone MVP while still having a realistic path toward becoming a startup product.
+Examples:
 
-## Why This Matters
+- Real estate: lease renewals, maintenance contracts, tenant obligations
+- Construction: payment terms, EOT notices, retention, subcontractor risk
+- Legal teams: liability, governing law, dispute resolution, termination clauses
+- Procurement: vendor contracts, SLA obligations, renewal risks
 
-Contracts often contain important obligations, deadlines, and risks that are difficult to track manually. Kontraktus aims to reduce this problem by combining private AI, document search, source citations, and structured risk detection.
+## Next Steps
 
-Our next step is to build the first working prototype: upload a contract, extract its text, ask a question, and receive an answer with citations.
+Immediate milestone for Week 2:
+
+- Set up Proxmox environment
+- Run first local AI pipeline test
+- Build vertical slice: upload contract → ask question → receive citation-grounded answer
