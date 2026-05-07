@@ -10,32 +10,77 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
   </head>
   <body class="theme-dark">
-    <main class="container">
-      <header class="hero">
+    <main class="container dashboard">
+      <header class="project-header">
         <h1>Kontraktus</h1>
-        <p class="subtitle">Weekly Capstone Development Updates</p>
-        <p>
-          Private AI Contract Intelligence Platform focused on local AI, contract review,
-          RAG-grounded answers, citations, and risk detection.
-        </p>
-        <div class="status-row">
-          <span class="chip chip-primary">Current Status: Approved Idea</span>
-          <span class="chip chip-muted">Site: gh.kontraktus.app</span>
+        <p class="project-subtitle">Private AI Contract Intelligence Platform</p>
+        <p class="project-meta">CSIT321 Capstone Project · University of Wollongong Dubai</p>
+        <div class="badge-row">
+          <span class="chip chip-status">Approved Idea</span>
+          <span class="chip">Week 1</span>
+          <span class="chip">Local AI</span>
+          <span class="chip">RAG Pipeline</span>
+          <span class="chip chip-muted">GitHub Pages Journal</span>
         </div>
       </header>
 
       <section class="section">
-        <h2 class="section-title">Latest Update</h2>
+        <h2 class="section-title">Current Status Panel</h2>
+        <div class="status-grid">
+          <article class="status-item">
+            <h3>Current Status</h3>
+            <p><strong>Approved</strong></p>
+          </article>
+          <article class="status-item">
+            <h3>Current Focus</h3>
+            <p>Architecture planning and MVP setup</p>
+          </article>
+          <article class="status-item">
+            <h3>Next Milestone</h3>
+            <p>Proxmox environment + first local AI test</p>
+          </article>
+          <article class="status-item">
+            <h3>Project Type</h3>
+            <p>Private AI Contract Intelligence</p>
+          </article>
+          <article class="status-item">
+            <h3>Deployment Target</h3>
+            <p>Local Proxmox machine</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Latest Weekly Update</h2>
         {% assign latest = site.posts.first %}
         {% if latest %}
-        <article class="card">
-          <div class="status-row">
+        <article class="featured-update card">
+          <div class="post-meta-row">
             <span class="chip">Week {{ latest.week }}</span>
-            <span class="chip chip-primary">{{ latest.status }}</span>
+            <span class="chip chip-status">{{ latest.status }}</span>
             <span class="chip chip-muted">{{ latest.date | date: "%b %d, %Y" }}</span>
           </div>
-          <h3 style="margin-top:0.6rem"><a href="{{ latest.url | relative_url }}">{{ latest.title }}</a></h3>
-          <p>{{ latest.summary }}</p>
+          <h3>Week 1 — Project Approved &amp; Architecture Direction</h3>
+          <p class="summary">{{ latest.summary }}</p>
+          <div class="featured-columns">
+            <div>
+              <h4>Decisions made</h4>
+              <ul>
+                <li>Kontraktus selected as approved capstone direction.</li>
+                <li>Local-first RAG architecture chosen for MVP.</li>
+                <li>Containerized Proxmox deployment selected for prototype.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Next steps</h4>
+              <ul>
+                <li>Set up Proxmox environment on i7 / 16GB test machine.</li>
+                <li>Run first local AI pipeline test with one contract.</li>
+                <li>Validate citation-grounded answer flow.</li>
+              </ul>
+            </div>
+          </div>
+          <a class="btn" href="{{ latest.url | relative_url }}">Read full update</a>
         </article>
         {% else %}
         <article class="card"><p>No updates published yet.</p></article>
@@ -43,76 +88,84 @@
       </section>
 
       <section class="section">
-        <h2 class="section-title">Progress Overview</h2>
-        <div class="grid grid-4">
-          <article class="card"><div class="metric">100%</div><p>local-first design</p></article>
-          <article class="card"><div class="metric">0</div><p>cloud contract uploads</p></article>
-          <article class="card"><div class="metric">3</div><p>planned core containers</p></article>
-          <article class="card"><div class="metric">1</div><p>approved capstone idea</p></article>
+        <h2 class="section-title">Development Timeline</h2>
+        <div class="timeline">
+          <article class="timeline-item done"><span class="timeline-status">Completed</span><strong>Week 1 — Approval &amp; Architecture</strong><p>Project approved and baseline architecture defined.</p></article>
+          <article class="timeline-item current"><span class="timeline-status">Current</span><strong>Week 2 — Proxmox Environment Setup</strong><p>Provision local environment and validate local model runtime.</p></article>
+          <article class="timeline-item"><span class="timeline-status">Planned</span><strong>Week 3 — Document Ingestion</strong><p>Implement text extraction for PDF/DOCX/TXT and preprocessing.</p></article>
+          <article class="timeline-item"><span class="timeline-status">Planned</span><strong>Week 4 — RAG Prototype</strong><p>Build retrieval + local answer generation loop.</p></article>
+          <article class="timeline-item"><span class="timeline-status">Planned</span><strong>Week 5 — Citations &amp; Risk Flags</strong><p>Add citation output and initial risk indicators.</p></article>
+          <article class="timeline-item"><span class="timeline-status">Planned</span><strong>Week 6 — Dashboard MVP</strong><p>Improve upload and Q/A interface for supervisor demos.</p></article>
+          <article class="timeline-item"><span class="timeline-status">Planned</span><strong>Week 7 — Testing &amp; Evaluation</strong><p>Run test scenarios and document outcomes.</p></article>
+          <article class="timeline-item"><span class="timeline-status">Planned</span><strong>Week 8 — Final Polish &amp; Demo</strong><p>Finalize UX, presentation notes, and capstone demonstration.</p></article>
         </div>
       </section>
 
       <section class="section">
-        <h2 class="section-title">All Weekly Updates</h2>
+        <h2 class="section-title">System Architecture</h2>
+        <div class="grid grid-2">
+          <article class="infra-card">
+            <h3>kontraktus-ai</h3>
+            <p>Local AI engine, Ollama, embeddings, RAG pipeline, ChromaDB.</p>
+          </article>
+          <article class="infra-card">
+            <h3>kontraktus-web</h3>
+            <p>Dashboard, uploads, Q&amp;A, citations, risk register.</p>
+          </article>
+          <article class="infra-card">
+            <h3>kontraktus-docs</h3>
+            <p>Optional Paperless-ngx layer for OCR and document organization.</p>
+          </article>
+          <article class="infra-card">
+            <h3>database layer</h3>
+            <p>Contracts, risks, users, audit logs, future workflow records.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">MVP Pipeline</h2>
+        <div class="pipeline-grid">
+          <div class="pipe-step"><span>1</span><strong>Upload</strong></div>
+          <div class="pipe-step"><span>2</span><strong>Extract</strong></div>
+          <div class="pipe-step"><span>3</span><strong>Chunk</strong></div>
+          <div class="pipe-step"><span>4</span><strong>Embed</strong></div>
+          <div class="pipe-step"><span>5</span><strong>Retrieve</strong></div>
+          <div class="pipe-step"><span>6</span><strong>Analyze</strong></div>
+          <div class="pipe-step"><span>7</span><strong>Cite</strong></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Progress Metrics</h2>
+        <div class="grid grid-3">
+          <article class="metric-card"><div class="metric">100%</div><p>Local-first design</p></article>
+          <article class="metric-card"><div class="metric">0</div><p>Cloud contract uploads</p></article>
+          <article class="metric-card"><div class="metric">3</div><p>Planned core containers</p></article>
+          <article class="metric-card"><div class="metric">1</div><p>Approved capstone idea</p></article>
+          <article class="metric-card"><div class="metric">16GB</div><p>RAM MVP target</p></article>
+          <article class="metric-card"><div class="metric">i7 12th Gen</div><p>Test machine</p></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Weekly Updates Archive</h2>
         <div class="post-list">
           {% for post in site.posts %}
           <article class="post-teaser">
-            <div class="status-row">
+            <div class="post-meta-row">
               <span class="chip">Week {{ post.week }}</span>
-              <span class="chip chip-primary">{{ post.status }}</span>
+              <span class="chip chip-status">{{ post.status }}</span>
               <span class="chip chip-muted">{{ post.date | date: "%b %d, %Y" }}</span>
             </div>
-            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            <h3>{{ post.title }}</h3>
             <p>{{ post.summary }}</p>
+            <div class="post-tags-inline">
+              {% for tag in post.tags %}<span class="tag">#{{ tag }}</span>{% endfor %}
+            </div>
+            <a class="btn btn-inline" href="{{ post.url | relative_url }}">Read more</a>
           </article>
           {% endfor %}
-        </div>
-      </section>
-
-      <section class="section">
-        <h2 class="section-title">Current MVP Pipeline</h2>
-        <article class="card">
-          <div class="pipeline">
-            <span class="step">Upload</span><span class="arrow">→</span>
-            <span class="step">Extract</span><span class="arrow">→</span>
-            <span class="step">Chunk</span><span class="arrow">→</span>
-            <span class="step">Embed</span><span class="arrow">→</span>
-            <span class="step">Retrieve</span><span class="arrow">→</span>
-            <span class="step">Analyze</span><span class="arrow">→</span>
-            <span class="step">Cite</span>
-          </div>
-          <div class="progress" style="--value: 16%; margin-top: 0.8rem"><span></span></div>
-          <p style="margin-top:0.45rem">MVP implementation progress starts in Week 2.</p>
-        </article>
-      </section>
-
-      <section class="section">
-        <h2 class="section-title">Infrastructure Plan</h2>
-        <div class="grid grid-3">
-          <article class="card">
-            <h3>kontraktus-ai</h3>
-            <p>Ollama + Python + LangChain/LlamaIndex + ChromaDB + embeddings + local RAG pipeline.</p>
-          </article>
-          <article class="card">
-            <h3>kontraktus-web</h3>
-            <p>Dashboard for upload, Q/A, citations, risk flags, and milestone reporting for professor review.</p>
-          </article>
-          <article class="card">
-            <h3>kontraktus-docs + data layer</h3>
-            <p>Optional Paperless-ngx OCR and data storage for contracts, risks, users, audit logs.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <h2 class="section-title">Progress Timeline</h2>
-        <div class="timeline">
-          <article class="timeline-item"><strong>Week 1:</strong> Idea approved and architecture planned.</article>
-          <article class="timeline-item"><strong>Week 2:</strong> Environment setup on Proxmox.</article>
-          <article class="timeline-item"><strong>Week 3:</strong> Document ingestion.</article>
-          <article class="timeline-item"><strong>Week 4:</strong> RAG prototype.</article>
-          <article class="timeline-item"><strong>Week 5:</strong> Citations and risk flags.</article>
-          <article class="timeline-item"><strong>Week 6:</strong> Dashboard polish.</article>
         </div>
       </section>
     </main>
