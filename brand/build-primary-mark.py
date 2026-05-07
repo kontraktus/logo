@@ -13,11 +13,11 @@ INK_DK = "#f3f5f9"
 BLUE_AC = "#3458e6"
 BLUE_AC_DK = "#6f96ff"
 
-# --- K silhouette: lighter stem, clearer bite, slightly crisper radii -----------------------------
+# --- K silhouette: refined wedge cut for cleaner intent at tiny and huge scales -------------------
 def k_planes(ink: str) -> str:
     return f'''    <rect fill="{ink}" x="17.35" y="23.55" width="12.55" height="49.15" rx="4.72" ry="4.72"/>
-    <path fill="{ink}" d="M30.12 35.62 L70.42 20.05 L70.42 33.38 L42.92 53.28 L30.12 43.18 Z"/>
-    <path fill="{ink}" d="M30.12 46.88 L71.02 71.02 L71.02 57.58 L43.92 53.38 L30.12 46.88 Z"/>'''
+    <path fill="{ink}" d="M29.9 34.84 L70.42 19.86 L70.42 33.14 L43.48 52.42 L29.9 42.58 Z"/>
+    <path fill="{ink}" d="M29.9 47.04 L71.02 71.02 L71.02 57.54 L43.48 53.76 L29.9 47.04 Z"/>'''
 
 
 def ledger(light: bool) -> str:

@@ -5,7 +5,7 @@
     <rect x="7.05" y="7" width="67.42" height="60.92" rx="11.08" ry="11.08" stroke="#eaeef8" stroke-width="1.05" fill="none" opacity="0.45"/>
     <rect x="11.95" y="11.82" width="67.42" height="60.92" rx="10.72" ry="10.72" stroke="#cdd7e8" stroke-width="0.95" fill="none" opacity="0.32"/>
     <rect fill="#080a0f" x="17.35" y="23.55" width="12.55" height="49.15" rx="4.72" ry="4.72"/>
-    <path fill="#080a0f" d="M30.12 35.62 L70.42 20.05 L70.42 33.38 L42.92 53.28 L30.12 43.18 Z"/>
-    <path fill="#080a0f" d="M30.12 46.88 L71.02 71.02 L71.02 57.58 L43.92 53.38 L30.12 46.88 Z"/>
+    <path fill="#080a0f" d="M29.9 34.84 L70.42 19.86 L70.42 33.14 L43.48 52.42 L29.9 42.58 Z"/>
+    <path fill="#080a0f" d="M29.9 47.04 L71.02 71.02 L71.02 57.54 L43.48 53.76 L29.9 47.04 Z"/>
     <path stroke="#b9c5d9" opacity="0.38" stroke-width="1.32" stroke-linecap="round" fill="none" d="M20.05 71.92 H52.82"/>
   </g></svg>

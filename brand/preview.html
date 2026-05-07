@@ -111,6 +111,33 @@
         width: 64px;
         height: 64px;
       }
+      figure.size-check .pad {
+        min-height: 120px;
+      }
+      .size-probe {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .size-probe img {
+        display: block;
+      }
+      .size-probe.favicon img {
+        width: 16px;
+        height: 16px;
+      }
+      .size-probe.navbar img {
+        width: 28px;
+        height: 28px;
+      }
+      .size-probe.social img {
+        width: 96px;
+        height: 96px;
+      }
+      .size-probe.hero img {
+        width: 220px;
+        height: 220px;
+      }
       .badge {
         display: inline-block;
         padding: 0.12rem 0.42rem;
@@ -196,6 +223,38 @@
           <figure class="favicon">
             <div class="pad dark"><img src="primary/favicon-on-dark.svg" alt="" /></div>
             <figcaption>primary/favicon-on-dark.svg</figcaption>
+          </figure>
+        </div>
+      </section>
+      <section id="size-review" style="margin-top: 1.4rem">
+        <h2>Negative-space cut review sizes</h2>
+        <p class="desc">
+          Single-source mark checks for intentional wedge readability from tiny UI contexts to large hero presentation.
+        </p>
+        <div class="grid">
+          <figure class="size-check">
+            <div class="pad light">
+              <div class="size-probe favicon"><img src="primary/favicon-on-light.svg" alt="" /></div>
+            </div>
+            <figcaption>Favicon scale · 16×16 visual target</figcaption>
+          </figure>
+          <figure class="size-check">
+            <div class="pad light">
+              <div class="size-probe navbar"><img src="primary/icon-only-minimal.svg" alt="" /></div>
+            </div>
+            <figcaption>Navbar logo scale · 28×28 visual target</figcaption>
+          </figure>
+          <figure class="size-check">
+            <div class="pad light">
+              <div class="size-probe social"><img src="primary/icon-square-on-light.svg" alt="" /></div>
+            </div>
+            <figcaption>WhatsApp/social preview scale · 96×96</figcaption>
+          </figure>
+          <figure class="size-check">
+            <div class="pad light">
+              <div class="size-probe hero"><img src="primary/icon-square-on-light.svg" alt="" /></div>
+            </div>
+            <figcaption>Hero scale · 220×220</figcaption>
           </figure>
         </div>
       </section>
