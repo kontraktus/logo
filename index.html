@@ -1,0 +1,120 @@
+---
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+  </head>
+  <body class="theme-dark">
+    <main class="container">
+      <header class="hero">
+        <h1>Kontraktus</h1>
+        <p class="subtitle">Weekly Capstone Development Updates</p>
+        <p>
+          Private AI Contract Intelligence Platform focused on local AI, contract review,
+          RAG-grounded answers, citations, and risk detection.
+        </p>
+        <div class="status-row">
+          <span class="chip chip-primary">Current Status: Approved Idea</span>
+          <span class="chip chip-muted">Site: gh.kontraktus.app</span>
+        </div>
+      </header>
+
+      <section class="section">
+        <h2 class="section-title">Latest Update</h2>
+        {% assign latest = site.posts.first %}
+        {% if latest %}
+        <article class="card">
+          <div class="status-row">
+            <span class="chip">Week {{ latest.week }}</span>
+            <span class="chip chip-primary">{{ latest.status }}</span>
+            <span class="chip chip-muted">{{ latest.date | date: "%b %d, %Y" }}</span>
+          </div>
+          <h3 style="margin-top:0.6rem"><a href="{{ latest.url | relative_url }}">{{ latest.title }}</a></h3>
+          <p>{{ latest.summary }}</p>
+        </article>
+        {% else %}
+        <article class="card"><p>No updates published yet.</p></article>
+        {% endif %}
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Progress Overview</h2>
+        <div class="grid grid-4">
+          <article class="card"><div class="metric">100%</div><p>local-first design</p></article>
+          <article class="card"><div class="metric">0</div><p>cloud contract uploads</p></article>
+          <article class="card"><div class="metric">3</div><p>planned core containers</p></article>
+          <article class="card"><div class="metric">1</div><p>approved capstone idea</p></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">All Weekly Updates</h2>
+        <div class="post-list">
+          {% for post in site.posts %}
+          <article class="post-teaser">
+            <div class="status-row">
+              <span class="chip">Week {{ post.week }}</span>
+              <span class="chip chip-primary">{{ post.status }}</span>
+              <span class="chip chip-muted">{{ post.date | date: "%b %d, %Y" }}</span>
+            </div>
+            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            <p>{{ post.summary }}</p>
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Current MVP Pipeline</h2>
+        <article class="card">
+          <div class="pipeline">
+            <span class="step">Upload</span><span class="arrow">→</span>
+            <span class="step">Extract</span><span class="arrow">→</span>
+            <span class="step">Chunk</span><span class="arrow">→</span>
+            <span class="step">Embed</span><span class="arrow">→</span>
+            <span class="step">Retrieve</span><span class="arrow">→</span>
+            <span class="step">Analyze</span><span class="arrow">→</span>
+            <span class="step">Cite</span>
+          </div>
+          <div class="progress" style="--value: 16%; margin-top: 0.8rem"><span></span></div>
+          <p style="margin-top:0.45rem">MVP implementation progress starts in Week 2.</p>
+        </article>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Infrastructure Plan</h2>
+        <div class="grid grid-3">
+          <article class="card">
+            <h3>kontraktus-ai</h3>
+            <p>Ollama + Python + LangChain/LlamaIndex + ChromaDB + embeddings + local RAG pipeline.</p>
+          </article>
+          <article class="card">
+            <h3>kontraktus-web</h3>
+            <p>Dashboard for upload, Q/A, citations, risk flags, and milestone reporting for professor review.</p>
+          </article>
+          <article class="card">
+            <h3>kontraktus-docs + data layer</h3>
+            <p>Optional Paperless-ngx OCR and data storage for contracts, risks, users, audit logs.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Progress Timeline</h2>
+        <div class="timeline">
+          <article class="timeline-item"><strong>Week 1:</strong> Idea approved and architecture planned.</article>
+          <article class="timeline-item"><strong>Week 2:</strong> Environment setup on Proxmox.</article>
+          <article class="timeline-item"><strong>Week 3:</strong> Document ingestion.</article>
+          <article class="timeline-item"><strong>Week 4:</strong> RAG prototype.</article>
+          <article class="timeline-item"><strong>Week 5:</strong> Citations and risk flags.</article>
+          <article class="timeline-item"><strong>Week 6:</strong> Dashboard polish.</article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

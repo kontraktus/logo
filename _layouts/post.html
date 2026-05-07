@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page.title }} · {{ site.title }}</title>
+    <meta name="description" content="{{ page.summary | default: site.description }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+  </head>
+  <body class="theme-dark">
+    <main class="container post-page">
+      <a class="back-link" href="{{ '/' | relative_url }}">← Back to weekly updates</a>
+
+      <article class="post-card">
+        <header class="post-header">
+          <div class="post-meta-row">
+            <span class="chip">Week {{ page.week }}</span>
+            <span class="chip chip-status">{{ page.status }}</span>
+            <span class="chip chip-muted">{{ page.date | date: '%b %d, %Y' }}</span>
+          </div>
+          <h1>{{ page.title }}</h1>
+          {% if page.summary %}
+          <p class="summary">{{ page.summary }}</p>
+          {% endif %}
+        </header>
+
+        <section class="post-content">{{ content }}</section>
+
+        {% if page.tags %}
+        <footer class="post-tags">
+          {% for tag in page.tags %}
+          <span class="tag">#{{ tag }}</span>
+          {% endfor %}
+        </footer>
+        {% endif %}
+      </article>
+    </main>
+  </body>
+</html>
