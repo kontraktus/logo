@@ -17,7 +17,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: radial-gradient(1100px 420px at 80% -30%, rgba(37, 99, 235, 0.2), transparent), var(--bg);
+  background: radial-gradient(1100px 420px at 80% -30%, rgba(37, 99, 235, 0.18), transparent), var(--bg);
   color: var(--text);
   font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
   line-height: 1.55;
@@ -35,7 +35,7 @@ a:hover { text-decoration: underline; }
 .dashboard { display: grid; gap: 0.95rem; }
 
 .project-header {
-  background: linear-gradient(180deg, rgba(37, 99, 235, 0.08), transparent 34%), var(--card);
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.08), transparent 35%), var(--card);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 1rem;
@@ -99,11 +99,42 @@ a:hover { text-decoration: underline; }
 .timeline-item,
 .infra-card,
 .featured-update,
+.focus-card,
 .post-card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 0.85rem;
+}
+
+.grid { display: grid; gap: 0.7rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+
+.focus-card {
+  background: linear-gradient(180deg, rgba(59, 130, 246, 0.08), transparent 45%), var(--card-2);
+}
+
+.focus-card h3,
+.status-item h3,
+.infra-card h3,
+.card h3,
+.metric-card h3,
+.post-teaser h3 {
+  margin: 0 0 0.28rem;
+  font-size: 0.93rem;
+}
+
+.focus-card p,
+.status-item p,
+.infra-card p,
+.card p,
+.metric-card p,
+.post-teaser p,
+.timeline-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 .status-grid {
@@ -112,29 +143,16 @@ a:hover { text-decoration: underline; }
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
 }
 
-.status-item h3 {
-  margin: 0 0 0.28rem;
-  font-size: 0.83rem;
-  text-transform: uppercase;
-  letter-spacing: 0.045em;
-  color: var(--muted);
-}
-
-.status-item p { margin: 0; font-size: 0.95rem; }
-
 .featured-update {
-  background: linear-gradient(180deg, rgba(59, 130, 246, 0.1), transparent 28%), var(--card-2);
+  background: linear-gradient(180deg, rgba(59, 130, 246, 0.1), transparent 30%), var(--card-2);
 }
 
 .featured-update h3 {
   margin: 0.55rem 0 0.35rem;
-  font-size: clamp(1.05rem, 3vw, 1.3rem);
+  font-size: clamp(1.04rem, 3vw, 1.26rem);
 }
 
-.summary {
-  margin: 0;
-  color: var(--muted);
-}
+.summary { margin: 0; color: var(--muted); }
 
 .featured-columns {
   margin-top: 0.65rem;
@@ -172,6 +190,7 @@ a:hover { text-decoration: underline; }
 }
 
 .btn:hover { text-decoration: none; filter: brightness(1.05); }
+.btn-inline { margin-top: 0.6rem; }
 
 .timeline {
   display: grid;
@@ -207,35 +226,15 @@ a:hover { text-decoration: underline; }
 .timeline-item strong {
   display: block;
   margin-bottom: 0.18rem;
-  font-size: 0.95rem;
+  font-size: 0.94rem;
 }
 
-.timeline-item p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.88rem;
-}
-
-.grid { display: grid; gap: 0.7rem; }
-.grid-2 { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
-.grid-3 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-
-.infra-card {
+.infra-card,
+.metric-card,
+.post-teaser,
+.focus-card {
   background: var(--card-2);
   border-color: #273246;
-}
-
-.infra-card h3 {
-  margin: 0 0 0.28rem;
-  font-size: 0.95rem;
-}
-
-.infra-card p,
-.metric-card p,
-.post-teaser p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.9rem;
 }
 
 .pipeline-grid {
@@ -267,17 +266,10 @@ a:hover { text-decoration: underline; }
   margin-bottom: 0.25rem;
 }
 
-.pipe-step strong {
-  font-size: 0.82rem;
-}
-
-.metric-card {
-  text-align: left;
-  background: var(--card-2);
-}
+.pipe-step strong { font-size: 0.82rem; }
 
 .metric {
-  font-size: 1.02rem;
+  font-size: 1.01rem;
   font-weight: 650;
   margin-bottom: 0.2rem;
 }
@@ -287,12 +279,8 @@ a:hover { text-decoration: underline; }
   gap: 0.65rem;
 }
 
-.post-teaser h3 {
-  margin: 0.4rem 0 0.3rem;
-  font-size: 1rem;
-}
-
-.post-tags-inline {
+.post-tags-inline,
+.post-tags {
   margin-top: 0.52rem;
   display: flex;
   flex-wrap: wrap;
@@ -307,8 +295,6 @@ a:hover { text-decoration: underline; }
   padding: 0.16rem 0.5rem;
 }
 
-.btn-inline { margin-top: 0.6rem; }
-
 /* Post page */
 .post-page { padding-top: 1.15rem; }
 
@@ -317,20 +303,17 @@ a:hover { text-decoration: underline; }
   font-size: 0.88rem;
 }
 
-.post-card {
-  margin-top: 0.7rem;
-  background: var(--card);
-}
+.post-card { margin-top: 0.7rem; }
 
 .post-header h1 {
   margin: 0.5rem 0 0.35rem;
-  font-size: clamp(1.3rem, 4vw, 1.95rem);
+  font-size: clamp(1.28rem, 4vw, 1.9rem);
 }
 
 .post-content h2 {
   margin-top: 1.25rem;
   margin-bottom: 0.4rem;
-  font-size: 1.05rem;
+  font-size: 1.04rem;
 }
 
 .post-content p,
@@ -357,17 +340,8 @@ a:hover { text-decoration: underline; }
   font-size: 0.84rem;
 }
 
-.post-tags {
-  margin-top: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-}
-
 @media (max-width: 900px) {
-  .pipeline-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
+  .pipeline-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
 @media (max-width: 640px) {
@@ -381,14 +355,13 @@ a:hover { text-decoration: underline; }
   .timeline-item,
   .infra-card,
   .featured-update,
+  .focus-card,
   .post-card {
     padding: 0.75rem;
     border-radius: 12px;
   }
 
-  .pipeline-grid {
-    grid-template-columns: 1fr;
-  }
+  .pipeline-grid { grid-template-columns: 1fr; }
 
   .pipe-step {
     min-height: 60px;
@@ -400,7 +373,5 @@ a:hover { text-decoration: underline; }
     gap: 0.45rem;
   }
 
-  .pipe-step span {
-    margin: 0;
-  }
+  .pipe-step span { margin: 0; }
 }
