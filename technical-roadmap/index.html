@@ -1,0 +1,94 @@
+---
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Technical Roadmap · {{ site.title }}</title>
+    <meta name="description" content="Technical planning notes for Kontraktus implementation phases." />
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="masthead">
+        <div class="brandlock">
+          <div class="brandmark" aria-hidden="true">
+            <img src="{{ '/assets/brand/kontraktus-mark.svg' | relative_url }}" alt="" />
+          </div>
+          <div class="brandtitle">
+            <h1>Technical Roadmap</h1>
+            <p class="sub">Kontraktus Implementation Planning</p>
+            <p class="meta">Detailed technical notes moved off homepage for Trimester One clarity.</p>
+          </div>
+        </div>
+        <div class="badge-row">
+          <a class="btn" href="{{ '/' | relative_url }}">Back to Supervision Dashboard</a>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="rail">
+          <div class="railcard">
+            <h2>Technical map</h2>
+            <ul class="navlist">
+              <li><a href="#architecture"><span class="navnum">01</span><span class="navlabel">Planned MVP Architecture</span></a></li>
+              <li><a href="#workflow"><span class="navnum">02</span><span class="navlabel">Proposed AI Workflow</span></a></li>
+              <li><a href="#metrics"><span class="navnum">03</span><span class="navlabel">Planning Metrics</span></a></li>
+              <li><a href="#research"><span class="navnum">04</span><span class="navlabel">Research Notes &amp; Decisions</span></a></li>
+            </ul>
+          </div>
+        </aside>
+
+        <div class="main">
+          <section class="section" id="architecture">
+            <h2 class="section-title">Planned MVP Architecture</h2>
+            <div class="grid grid-2">
+              <article class="panel"><h3>kontraktus-ai</h3><p>Local AI engine, Ollama, embeddings, RAG pipeline, ChromaDB.</p></article>
+              <article class="panel"><h3>kontraktus-web</h3><p>Dashboard for uploads, Q&amp;A, citations, and risk register.</p></article>
+              <article class="panel"><h3>kontraktus-docs</h3><p>Optional Paperless-ngx layer for OCR and document organization.</p></article>
+              <article class="panel"><h3>database layer</h3><p>Contracts, risks, users, audit logs, and future workflow records.</p></article>
+            </div>
+          </section>
+
+          <section class="section" id="workflow">
+            <h2 class="section-title">Proposed AI Workflow</h2>
+            <div class="pipeline-grid">
+              <div class="pipe-step"><span>1</span><strong>Upload</strong></div>
+              <div class="pipe-step"><span>2</span><strong>Extract</strong></div>
+              <div class="pipe-step"><span>3</span><strong>Chunk</strong></div>
+              <div class="pipe-step"><span>4</span><strong>Embed</strong></div>
+              <div class="pipe-step"><span>5</span><strong>Retrieve</strong></div>
+              <div class="pipe-step"><span>6</span><strong>Analyze</strong></div>
+              <div class="pipe-step"><span>7</span><strong>Cite</strong></div>
+            </div>
+          </section>
+
+          <section class="section" id="metrics">
+            <h2 class="section-title">Planning Metrics</h2>
+            <div class="grid grid-3">
+              <article class="panel"><div class="metric">100%</div><p>Local-first design</p></article>
+              <article class="panel"><div class="metric">0</div><p>Cloud contract uploads</p></article>
+              <article class="panel"><div class="metric">3</div><p>Planned core containers</p></article>
+              <article class="panel"><div class="metric">1</div><p>Approved capstone idea</p></article>
+              <article class="panel"><div class="metric">16GB</div><p>RAM MVP target</p></article>
+              <article class="panel"><div class="metric">i7 12th Gen</div><p>Test machine</p></article>
+            </div>
+          </section>
+
+          <section class="section" id="research">
+            <h2 class="section-title">Research Notes &amp; Decisions</h2>
+            <div class="grid grid-2">
+              <article class="panel"><h3>Research Focus</h3><p>Local RAG systems and private AI for contract intelligence workflows.</p></article>
+              <article class="panel"><h3>Current Challenge</h3><p>Balancing local AI performance with limited hardware resources.</p></article>
+              <article class="panel"><h3>Planned Stack</h3><p>Ollama, ChromaDB, LangChain, Streamlit/Jekyll.</p></article>
+              <article class="panel"><h3>Supervisor Feedback</h3><p>Focus on an achievable MVP before adding advanced workflows.</p></article>
+              <article class="panel"><h3>Key Decisions</h3><p>Prioritize citation-grounded answers and privacy-preserving local processing.</p></article>
+              <article class="panel"><h3>Current Risks/Challenges</h3><p>Scope creep, model latency on local hardware, and document quality variance.</p></article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
