@@ -111,24 +111,19 @@ The long-term goal is to build a platform that can identify important clauses, e
 
 ## Related Documents
 
-<div class="grid grid-2">
+<div class="grid">
   <article class="panel soft">
     <div class="meta-row">
       <span class="chip chip-status">Available</span>
-      <span class="chip chip-muted">PDF</span>
+      <span class="chip chip-muted">PDF + PPTX</span>
     </div>
     <h3>Project Proposal</h3>
-    <p>Initial Kontraktus proposal document submitted/used for project approval and scope discussion.</p>
-    <a class="btn" href="{{ '/assets/docs/Contract_Intelligence_Platform.pdf' | relative_url }}" download>Download Document</a>
-  </article>
-  <article class="panel soft">
+    <p>Initial proposal materials reviewed during the project approval and scope discussion.</p>
+    <p class="summary">Files: Project Proposal Document · Project Proposal Supporting File / Presentation</p>
     <div class="meta-row">
-      <span class="chip chip-status">Available</span>
-      <span class="chip chip-muted">PPTX</span>
+      <a class="btn" href="{{ '/assets/docs/Contract_Intelligence_Platform.pdf' | relative_url }}" download>Download Proposal File 1</a>
+      <a class="btn" href="{{ '/assets/docs/contract_review_final%20-%20Repaired.pptx' | relative_url }}" download>Download Proposal File 2</a>
     </div>
-    <h3>Meeting 1 Memo</h3>
-    <p>First supervisor meeting memo covering idea approval, planning baseline, MVP direction, and next academic steps.</p>
-    <a class="btn" href="{{ '/assets/docs/contract_review_final%20-%20Repaired.pptx' | relative_url }}" download>Download Document</a>
   </article>
 </div>
 
