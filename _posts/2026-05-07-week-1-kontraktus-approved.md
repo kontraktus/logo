@@ -77,6 +77,25 @@ Initial planned components include:
 
 These components remain part of the planning and feasibility analysis at this stage.
 
+## Target MVP by End of Trimester 2
+
+By the end of the second trimester, the target is to demonstrate a working Kontraktus MVP rather than only a conceptual design.
+
+The expected MVP should allow a user to:
+
+- upload a contract document,
+- extract readable contract text,
+- ask questions about the contract,
+- retrieve relevant clauses from the document,
+- generate answers grounded in the retrieved clauses,
+- display citations showing where the answer came from,
+- identify basic contract risks such as renewal terms, termination clauses, liability, payment obligations, and dispute resolution clauses,
+- present the results in a simple web dashboard.
+
+The MVP does not need to be a complete commercial product at this stage. It should prove the core technical and academic concept: that a local AI-assisted workflow can support private, explainable, citation-based contract review.
+
+Advanced features such as multi-user enterprise workflows, advanced legal playbooks, full authentication, payment systems, production deployment, and industry-specific modules can remain part of the long-term roadmap.
+
 ## Long-Term Vision
 
 Kontraktus should remain a general contract intelligence platform while supporting specialized domain views over time.
@@ -90,14 +109,37 @@ Possible future domains include:
 
 The long-term goal is to build a platform that can identify important clauses, explain contract risks, and support structured legal review.
 
+## Related Documents
+
+<div class="grid grid-2">
+  <article class="panel soft">
+    <div class="meta-row">
+      <span class="chip chip-status">Available</span>
+      <span class="chip chip-muted">PDF</span>
+    </div>
+    <h3>Project Proposal</h3>
+    <p>Initial Kontraktus proposal document submitted/used for project approval and scope discussion.</p>
+    <a class="btn" href="{{ '/assets/docs/Contract_Intelligence_Platform.pdf' | relative_url }}" download>Download Document</a>
+  </article>
+  <article class="panel soft">
+    <div class="meta-row">
+      <span class="chip chip-status">Available</span>
+      <span class="chip chip-muted">PPTX</span>
+    </div>
+    <h3>Meeting 1 Memo</h3>
+    <p>First supervisor meeting memo covering idea approval, planning baseline, MVP direction, and next academic steps.</p>
+    <a class="btn" href="{{ '/assets/docs/contract_review_final%20-%20Repaired.pptx' | relative_url }}" download>Download Document</a>
+  </article>
+</div>
+
 ## Next Steps
 
-The next academic priorities are:
+Near-term academic focus for Trimester 1:
 
 - complete planning and feasibility documentation,
 - prepare requirements analysis,
+- define the exact MVP boundary for Trimester 2,
 - continue architecture design,
-- define a realistic MVP boundary,
 - run controlled early prototyping to validate local RAG feasibility.
 
-The implementation-heavy phase is expected to expand significantly in the next trimester.
+The implementation-heavy phase is expected to expand significantly in the second trimester, where the main objective will be building and demonstrating the working MVP.
