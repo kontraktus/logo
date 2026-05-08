@@ -38,10 +38,10 @@
             <h2>Homepage map</h2>
             <ul class="navlist">
               <li><a href="#overview"><span class="navnum">01</span><span class="navlabel">Overview</span></a></li>
-              <li><a href="#latest"><span class="navnum">02</span><span class="navlabel">Latest Update</span></a></li>
-              <li><a href="#focus"><span class="navnum">03</span><span class="navlabel">Trimester Focus</span></a></li>
-              <li><a href="#timeline"><span class="navnum">04</span><span class="navlabel">Timeline</span></a></li>
-              <li><a href="#deliverables"><span class="navnum">05</span><span class="navlabel">Deliverables</span></a></li>
+              <li><a href="#status"><span class="navnum">02</span><span class="navlabel">Current Trimester Status</span></a></li>
+              <li><a href="#latest"><span class="navnum">03</span><span class="navlabel">Latest Update</span></a></li>
+              <li><a href="#deliverables"><span class="navnum">04</span><span class="navlabel">Documents &amp; Deliverables</span></a></li>
+              <li><a href="#timeline"><span class="navnum">05</span><span class="navlabel">Timeline</span></a></li>
               <li><a href="#review"><span class="navnum">06</span><span class="navlabel">Supervisor Review</span></a></li>
               <li><a href="#archive"><span class="navnum">07</span><span class="navlabel">Weekly Archive</span></a></li>
             </ul>
@@ -49,6 +49,15 @@
         </aside>
 
         <div class="main">
+          <section class="section" id="status">
+            <h2 class="section-title">Current Trimester Status</h2>
+            <div class="grid grid-3">
+              <article class="panel soft"><h3>Trimester 1 Focus</h3><p>Planning, feasibility analysis, requirements preparation, and design documentation.</p></article>
+              <article class="panel soft"><h3>Current Academic Position</h3><p>Idea approved. Team is validating scope and preparing formal deliverables for supervisor review.</p></article>
+              <article class="panel soft"><h3>Trimester 2 Target</h3><p>Build and demonstrate a working academic MVP, not a full commercial product release.</p></article>
+            </div>
+          </section>
+
           <section class="section" id="latest">
             <h2 class="section-title">Latest Weekly Update</h2>
             {% assign latest = site.posts.first %}
@@ -68,15 +77,35 @@
             {% endif %}
           </section>
 
-          <section class="section" id="focus">
-            <h2 class="section-title">Current Trimester Focus</h2>
+          <section class="section" id="deliverables">
+            <h2 class="section-title">Documents &amp; Deliverables</h2>
             <div class="grid grid-3">
-              <article class="panel soft"><h3>Proposal &amp; Idea Validation</h3><p>Confirm problem relevance and scope boundaries.</p></article>
-              <article class="panel soft"><h3>Planning &amp; Feasibility Analysis</h3><p>Assess technical practicality and MVP viability.</p></article>
-              <article class="panel soft"><h3>Requirements Analysis</h3><p>Define functional and non-functional requirements.</p></article>
-              <article class="panel soft"><h3>First Presentation</h3><p>Present capstone direction, planning evidence, and expected outcomes.</p></article>
-              <article class="panel soft"><h3>Design Document</h3><p>Prepare architecture and component design for next trimester execution.</p></article>
-              <article class="panel soft"><h3>Weekly Supervision Updates</h3><p>Track supervisor requests, decisions, and progress updates week by week.</p></article>
+              <article class="panel soft">
+                <div class="meta-row">
+                  <span class="chip chip-status">Available</span>
+                  <span class="chip chip-muted">PDF</span>
+                </div>
+                <h3>Project Proposal</h3>
+                <p>Initial Kontraktus proposal document submitted/used for project approval and scope discussion.</p>
+                <a class="btn" href="{{ '/assets/docs/Contract_Intelligence_Platform.pdf' | relative_url }}" download>Download Document</a>
+              </article>
+              <article class="panel soft">
+                <div class="meta-row">
+                  <span class="chip chip-status">Available</span>
+                  <span class="chip chip-muted">PPTX</span>
+                </div>
+                <h3>Meeting 1 Memo</h3>
+                <p>First supervisor meeting memo covering idea approval, planning baseline, MVP direction, and next academic steps.</p>
+                <a class="btn" href="{{ '/assets/docs/contract_review_final%20-%20Repaired.pptx' | relative_url }}" download>Download Document</a>
+              </article>
+              <article class="panel">
+                <div class="meta-row">
+                  <span class="chip">Trimester 1 Deliverables</span>
+                  <span class="chip chip-muted">In Progress</span>
+                </div>
+                <h3>Academic Documentation Track</h3>
+                <p>Planning and feasibility submission, requirements analysis, and design documentation remain the current supervision priorities.</p>
+              </article>
             </div>
           </section>
 
@@ -94,18 +123,6 @@
               <article class="timeline-item"><span class="timeline-status">Planned</span><strong>Week 9 — First panel presentation</strong><p>Presenting progress, feasibility, and direction.</p></article>
               <article class="timeline-item"><span class="timeline-status">Planned</span><strong>Week 10 — Design document preparation</strong><p>Preparing architecture and component-level design.</p></article>
               <article class="timeline-item"><span class="timeline-status">Planned</span><strong>Week 11 — Design document submission</strong><p>Submitting design package for next-trimester implementation.</p></article>
-            </div>
-          </section>
-
-          <section class="section" id="deliverables">
-            <h2 class="section-title">Deliverables / Documents Status</h2>
-            <div class="grid grid-2">
-              <article class="panel"><h3>Idea Proposal</h3><p>Status: Completed · Due: Week 4 · Note: Proposal presented and approved.</p></article>
-              <article class="panel"><h3>Planning &amp; Feasibility Analysis</h3><p>Status: In Progress · Due: Week 6 · Note: Final drafting and evidence consolidation.</p></article>
-              <article class="panel"><h3>Requirements Analysis</h3><p>Status: Planned · Due: Week 8 · Note: Structured requirement specification.</p></article>
-              <article class="panel"><h3>First Presentation</h3><p>Status: Planned · Due: Week 9 · Note: Panel-facing progress and milestone review.</p></article>
-              <article class="panel"><h3>Design Document</h3><p>Status: Planned · Due: Week 11 · Note: Architecture and component design package.</p></article>
-              <article class="panel"><h3>Weekly Updates</h3><p>Status: Active · Due: Weekly · Note: All updates posted in the archive below.</p></article>
             </div>
           </section>
 
