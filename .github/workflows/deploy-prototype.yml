@@ -1,0 +1,54 @@
+name: Deploy prototype to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'prototype.html'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'vite.config.ts'
+      - 'postcss.config.mjs'
+      - '.github/workflows/deploy-prototype.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-prototype
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build prototype
+        run: npm run build
+
+      - name: Publish build to prototype/
+        run: |
+          rm -rf prototype
+          cp -r dist prototype
+          mv prototype/prototype.html prototype/index.html
+          touch prototype/.nojekyll
+
+      - name: Commit and push prototype build
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add prototype/
+          git diff --staged --quiet && echo "No changes to deploy" && exit 0
+          git commit -m "Deploy prototype to GitHub Pages"
+          git push
