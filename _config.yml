@@ -17,4 +17,3 @@ exclude:
   - postcss.config.mjs
   - vite.config.ts
   - prototype.html
-  - prototype/assets/
