@@ -1,169 +1,405 @@
 import { useState } from 'react';
-import { Info } from 'lucide-react';
-import { KontraktusLogo } from './components/KontraktusLogo';
+import {
+  Contract,
+  RiskFinding,
+  MissingClause,
+  User,
+  AuditLog,
+  initialContracts,
+  initialUsers,
+  initialAuditLogs,
+  generateGenericAIResponse,
+  aiPrescriptedQAs
+} from './mockData';
+import { LowFiPrototype } from './components/LowFiPrototype';
+import { HighFiPrototype } from './components/HighFiPrototype';
+import { Info, Settings, Shield, RefreshCw } from 'lucide-react';
 
 export default function App() {
-  const [showInstructions, setShowInstructions] = useState(false);
+  // Global States
+  const [contracts, setContracts] = useState<Contract[]>(initialContracts);
+  const [users, setUsers] = useState<User[]>(initialUsers);
+  const [auditLogs, setAuditLogs] = useState<AuditLog[]>(initialAuditLogs);
+  
+  // Set default logged in user to Jane Doe (Admin) for easy onboarding
+  const [currentUser, setCurrentUser] = useState<User | null>(initialUsers[0]);
+  
+  // Fidelity toggle: true = High-Fi SaaS, false = Low-Fi Wireframe
+  const [isHighFi, setIsHighFi] = useState<boolean>(true);
+  
+  // Screen management
+  const [currentScreen, setScreen] = useState<string>('dashboard');
+  const [selectedContractId, setSelectedContractId] = useState<string>('con-1');
+  
+  // Chat history state per contract
+  const [chatHistory, setChatHistory] = useState<Record<string, { role: 'user' | 'ai'; text: string; citationId?: string }[]>>({
+    'con-1': [
+      { role: 'ai', text: 'Hello! I am your local Kontraktus AI. I have completed risk scanning for NDA - Acme Corp. Ask me any questions, or click a preset below.', citationId: 'con-1-p1' }
+    ],
+    'con-2': [
+      { role: 'ai', text: 'Hello! I have completed analyzing Vendor Agreement - TechCorp. I flagged 3 compliance risks. How can I help you review this software license?', citationId: 'con-2-p1' }
+    ]
+  });
+
+  // Reset Environment
+  const handleReset = () => {
+    setContracts(initialContracts);
+    setUsers(initialUsers);
+    setAuditLogs(initialAuditLogs);
+    setCurrentUser(initialUsers[0]);
+    setScreen('dashboard');
+    setSelectedContractId('con-1');
+    setChatHistory({
+      'con-1': [{ role: 'ai', text: 'Hello! I am your local Kontraktus AI. I have completed risk scanning for NDA - Acme Corp.', citationId: 'con-1-p1' }],
+      'con-2': [{ role: 'ai', text: 'Hello! I have completed analyzing Vendor Agreement - TechCorp.', citationId: 'con-2-p1' }]
+    });
+    addAuditLog('SYSTEM', 'System State', 'Reset prototype environment to initial mock baseline.');
+  };
+
+  // Log Helper
+  const addAuditLog = (userName: string, action: string, details: string, roleOverride?: string) => {
+    const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19);
+    const newLog: AuditLog = {
+      id: `log-${Date.now()}`,
+      timestamp,
+      user: userName,
+      role: roleOverride || (currentUser ? currentUser.role : 'Guest'),
+      action,
+      ipAddress: '127.0.0.1',
+      details
+    };
+    setAuditLogs(prev => [newLog, ...prev]);
+  };
+
+  // Auth actions
+  const handleLogin = (role: string) => {
+    const matchingUser = users.find(u => u.role === role && u.status === 'Active');
+    if (matchingUser) {
+      setCurrentUser(matchingUser);
+      setScreen('dashboard');
+      addAuditLog(matchingUser.name, 'User Sign In', `Logged in successfully via quick selection.`, matchingUser.role);
+    } else {
+      alert(`No active user found with the role ${role}`);
+    }
+  };
+
+  const handleLogout = () => {
+    if (currentUser) {
+      addAuditLog(currentUser.name, 'User Sign Out', `Logged out of the portal.`);
+    }
+    setCurrentUser(null);
+    setScreen('dashboard');
+  };
+
+  // Upload Action
+  const handleUploadContract = (file: { name: string; type: string; size: string }) => {
+    const newId = `con-${contracts.length + 1}`;
+    
+    // Create new contract object with sample paragraphs & risk
+    const newContract: Contract = {
+      id: newId,
+      name: file.name,
+      type: file.type,
+      uploadedBy: currentUser ? currentUser.name : 'Bob Builder',
+      uploadDate: new Date().toISOString().substring(0, 16).replace('T', ' '),
+      status: 'Analysed',
+      fileType: file.name.endsWith('.docx') ? 'DOCX' : file.name.endsWith('.txt') ? 'TXT' : 'PDF',
+      fileSize: file.size,
+      paragraphs: [
+        { id: `${newId}-p1`, clauseTitle: 'SERVICE PROCUREMENT AGREEMENT', text: `This Service Procurement Agreement is entered into by the client organization and the vendor providing services related to: ${file.type}.` },
+        { id: `${newId}-p2`, clauseTitle: 'Clause 1: Term', text: 'This Agreement shall commence on the Effective Date and shall continue in force for an initial term of twelve (12) months, renewing automatically unless terminated with 90 days notice.' },
+        { id: `${newId}-p3`, clauseTitle: 'Clause 2: Indemnity & Damages', text: 'THE VENDOR AGREES TO FULLY INDEMNIFY AND HOLD HARMLESS THE CLIENT FROM ANY CLAIMS, ACTIONS, LOSSES OR DAMAGES OF ANY KIND, INCLUDING INDIRECT OR PUNITIVE DAMAGES, ARISING OUT OF OR IN CONNECTION WITH THE SERVICES.', riskId: `${newId}-risk-1` },
+        { id: `${newId}-p4`, clauseTitle: 'Clause 3: Governing Law', text: 'This contract shall be construed in accordance with the laws of the United Kingdom, with dispute resolution via arbitration in London.' }
+      ],
+      risks: [
+        {
+          id: `${newId}-risk-1`,
+          title: 'Uncapped Vendor Indemnity Obligation',
+          severity: 'High',
+          reason: 'The indemnity clause binds the vendor to cover all client damages without direct cap limits or exclusions for consequential damages.',
+          impact: 'Exposes the vendor to unlimited litigation liability and severe financial risks.',
+          evidenceLocation: 'Clause 2 (Indemnity & Damages)',
+          suggestedAction: 'Add a clause capping mutual indemnity at the total fees paid under the contract during the preceding 12 months.',
+          status: 'pending'
+        }
+      ],
+      missingClauses: [
+        {
+          id: `${newId}-miss-1`,
+          title: 'Data Security Addendum (DPA)',
+          description: 'No explicit standard data protection language or security protocols are documented.',
+          suggestion: 'Append a standard cybersecurity clause safeguarding corporate network assets and user logs.'
+        }
+      ]
+    };
+
+    setContracts(prev => [...prev, newContract]);
+    
+    // Add welcome AI message
+    setChatHistory(prev => ({
+      ...prev,
+      [newId]: [
+        { role: 'ai', text: `Hello! I have completed local RAG analysis for your uploaded contract: ${file.name}. I found 1 high-risk clause and 1 missing clause.`, citationId: `${newId}-p1` }
+      ]
+    }));
+
+    addAuditLog(currentUser ? currentUser.name : 'SYSTEM', 'Contract Upload', `Uploaded contract ${file.name} classified as ${file.type}.`);
+    addAuditLog('SYSTEM (Local AI)', 'AI Analysis', `Completed local embedding extraction & risk scan for ${file.name}.`);
+  };
+
+  const handleUpdateContractStatus = (contractId: string, status: Contract['status']) => {
+    setContracts(prev => prev.map(c => c.id === contractId ? { ...c, status } : c));
+    addAuditLog(currentUser ? currentUser.name : 'SYSTEM', 'Status Change', `Updated status of contract ${contractId} to ${status}.`);
+  };
+
+  const handleUpdateRiskStatus = (contractId: string, riskId: string, status: RiskFinding['status']) => {
+    setContracts(prev => prev.map(c => {
+      if (c.id === contractId) {
+        return {
+          ...c,
+          risks: c.risks.map(r => r.id === riskId ? { ...r, status } : r)
+        };
+      }
+      return c;
+    }));
+    
+    const c = contracts.find(c => c.id === contractId);
+    const r = c?.risks.find(r => r.id === riskId);
+    
+    addAuditLog(
+      currentUser ? currentUser.name : 'SYSTEM',
+      'Risk Assessment',
+      `${status === 'accepted' ? 'Accepted' : 'Rejected'} risk finding "${r?.title || 'Unknown'}" in ${c?.name}.`
+    );
+  };
+
+  const handleUpdateRiskSeverity = (contractId: string, riskId: string, severity: RiskFinding['severity']) => {
+    setContracts(prev => prev.map(c => {
+      if (c.id === contractId) {
+        return {
+          ...c,
+          risks: c.risks.map(r => r.id === riskId ? { ...r, severity } : r)
+        };
+      }
+      return c;
+    }));
+
+    const c = contracts.find(c => c.id === contractId);
+    const r = c?.risks.find(r => r.id === riskId);
+
+    addAuditLog(
+      currentUser ? currentUser.name : 'SYSTEM',
+      'Risk Modification',
+      `Changed severity of "${r?.title || 'Unknown'}" to ${severity} in ${c?.name}.`
+    );
+  };
+
+  // Admin Actions
+  const handleCreateUser = (name: string, email: string, role: User['role']) => {
+    const newUser: User = {
+      id: `usr-${users.length + 1}`,
+      name,
+      email,
+      role,
+      status: 'Active'
+    };
+    setUsers(prev => [...prev, newUser]);
+    addAuditLog(currentUser ? currentUser.name : 'SYSTEM', 'User Management', `Created user account for ${name} (${email}) as ${role}.`);
+  };
+
+  const handleToggleUserStatus = (userId: string) => {
+    setUsers(prev => prev.map(u => {
+      if (u.id === userId) {
+        const nextStatus = u.status === 'Active' ? 'Disabled' : 'Active';
+        
+        // Prevent disabling yourself
+        if (currentUser && currentUser.id === userId) {
+          alert("Security Error: You cannot disable your own active administrator account.");
+          return u;
+        }
+
+        addAuditLog(
+          currentUser ? currentUser.name : 'SYSTEM',
+          'User Management',
+          `${nextStatus === 'Active' ? 'Enabled' : 'Disabled'} user account: ${u.name}`
+        );
+
+        return { ...u, status: nextStatus };
+      }
+      return u;
+    }));
+  };
+
+  // AI Chat Q&A Interaction
+  const handleSendChatMessage = (contractId: string, message: string) => {
+    const activeCon = contracts.find(c => c.id === contractId);
+    if (!activeCon) return;
+
+    const userMsg = { role: 'user' as const, text: message };
+    
+    // Update local state with user message
+    setChatHistory(prev => {
+      const current = prev[contractId] || [];
+      return { ...prev, [contractId]: [...current, userMsg] };
+    });
+
+    addAuditLog(currentUser ? currentUser.name : 'SYSTEM', 'AI Chat Query', `Submitted natural language question: "${message}"`);
+
+    // Simulate AI thinking and output (200ms delay for realism)
+    setTimeout(() => {
+      // 1. Check if there's a prescripted question matching the query
+      const match = (aiPrescriptedQAs[contractId] || []).find(
+        qa => qa.query.toLowerCase().trim() === message.toLowerCase().trim()
+      );
+
+      let aiMsg: { role: 'ai'; text: string; citationId?: string };
+      
+      if (match) {
+        aiMsg = {
+          role: 'ai',
+          text: match.answer,
+          citationId: match.citationId
+        };
+      } else {
+        // 2. Generate a smart response based on matches
+        const response = generateGenericAIResponse(message, activeCon);
+        aiMsg = {
+          role: 'ai',
+          text: response.answer,
+          citationId: response.citationId
+        };
+      }
+
+      setChatHistory(prev => {
+        const current = prev[contractId] || [];
+        return { ...prev, [contractId]: [...current, aiMsg] };
+      });
+      
+      addAuditLog(
+        'SYSTEM (Local AI)',
+        'AI Chat Answer',
+        `Generated response referencing citation section ${aiMsg.citationId || 'none'}.`
+      );
+    }, 250);
+  };
+
+  // Quick Role switch from top switcher bar
+  const handleTopBarRoleChange = (role: string) => {
+    const matchingUser = users.find(u => u.role === role && u.status === 'Active');
+    if (matchingUser) {
+      setCurrentUser(matchingUser);
+      // Ensure we don't stay on admin screen if new role doesn't support it
+      if (currentScreen === 'admin' && role !== 'Administrator') {
+        setScreen('dashboard');
+      }
+      addAuditLog(matchingUser.name, 'Role Switch', `Switched active profile to ${role} (Fast Switcher)`);
+    } else {
+      alert(`Cannot switch: No active ${role} found in database.`);
+    }
+  };
 
   return (
-    <div className="size-full flex items-center justify-center bg-white p-8">
-      <div className="max-w-5xl w-full space-y-12">
-        <div className="text-center space-y-2">
-          <h1 className="text-2xl font-semibold text-slate-950">Brand Assets</h1>
-          <p className="text-sm text-slate-500">
-            Kontraktus brand identity and guidelines
-          </p>
+    <div className="flex flex-col min-h-screen">
+      {/* PERSISTENT GLOBAL TOP SWITCHER BAR */}
+      <div className="bg-slate-900 border-b border-slate-800 py-2.5 px-4 text-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs sticky top-0 z-50 shadow-lg">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 bg-blue-950 border border-blue-900 text-blue-400 px-2.5 py-0.5 rounded font-bold uppercase tracking-wider text-[10px]">
+            <Settings className="w-3.5 h-3.5 animate-spin" /> PROTOTYPE CONTROL PANEL
+          </div>
+          <span className="text-slate-400 hidden lg:inline">Toggle design fidelity or active user roles instantly:</span>
         </div>
 
-        {/* Full Logo Section */}
-        <div className="bg-slate-50 rounded-xl p-16 space-y-6 border border-slate-200">
-          <div className="text-center mb-4">
-            <h2 className="text-lg font-semibold text-slate-900">Primary Logo</h2>
-            <p className="text-xs text-slate-500 mt-1">Use for website headers, marketing materials, and presentations</p>
+        <div className="flex flex-wrap items-center gap-3 md:gap-4">
+          {/* Fidelity switches */}
+          <div className="flex bg-slate-950 border border-slate-800 rounded p-0.5">
+            <button
+              onClick={() => setIsHighFi(false)}
+              className={`px-3 py-1 rounded transition-colors font-bold ${!isHighFi ? 'bg-slate-200 text-black font-extrabold' : 'text-slate-400 hover:text-white'}`}
+            >
+              Prototype 1: Low-Fi (Wireframe)
+            </button>
+            <button
+              onClick={() => setIsHighFi(true)}
+              className={`px-3 py-1 rounded transition-colors font-bold ${isHighFi ? 'bg-blue-600 text-white font-extrabold' : 'text-slate-400 hover:text-white'}`}
+            >
+              Prototype 2: High-Fi (SaaS)
+            </button>
           </div>
-          <div
-            className="flex items-center justify-center p-12 bg-white rounded-xl"
-            id="kontraktus-logo-full"
-          >
-            <KontraktusLogo variant="full" size="lg" />
-          </div>
-        </div>
 
-        {/* Profile Picture Version */}
-        <div className="bg-slate-50 rounded-xl p-16 space-y-6 border border-slate-200">
-          <div className="text-center mb-4">
-            <h2 className="text-lg font-semibold text-slate-900">Profile Picture / Icon</h2>
-            <p className="text-xs text-slate-500 mt-1">Use for social media profiles, app icons, and favicons</p>
-          </div>
-          <div
-            className="flex items-center justify-center p-12 bg-white rounded-xl"
-            id="kontraktus-logo-icon"
-          >
-            <KontraktusLogo variant="icon-only" size="md" />
-          </div>
-        </div>
+          {/* Quick Role switcher (RBAC validation) */}
+          {currentUser && (
+            <div className="flex items-center gap-1 bg-slate-950 border border-slate-800 rounded p-0.5">
+              <span className="text-[10px] text-slate-500 font-bold px-2 uppercase">Role:</span>
+              <select
+                value={currentUser.role}
+                onChange={e => handleTopBarRoleChange(e.target.value)}
+                className="bg-transparent text-slate-200 border-0 outline-none text-xs px-2 py-0.5 pr-4 font-semibold cursor-pointer"
+              >
+                <option value="Administrator" className="bg-slate-950 text-slate-200">Administrator</option>
+                <option value="Legal Reviewer" className="bg-slate-950 text-slate-200">Legal Reviewer</option>
+                <option value="Compliance Officer" className="bg-slate-950 text-slate-200">Compliance Officer</option>
+                <option value="Contract Manager" className="bg-slate-950 text-slate-200">Contract Manager</option>
+              </select>
+            </div>
+          )}
 
-        {/* Instructions */}
-        <div className="flex justify-center">
+          {/* Reset Environment */}
           <button
-            onClick={() => setShowInstructions(!showInstructions)}
-            className="flex items-center gap-2 px-5 py-2.5 bg-slate-950 text-white rounded-lg hover:bg-slate-800 transition-colors text-sm font-medium"
+            onClick={handleReset}
+            className="flex items-center gap-1.5 bg-slate-950 hover:bg-slate-850 border border-slate-800 text-slate-300 hover:text-white px-3 py-1.5 rounded font-semibold transition-all cursor-pointer"
+            title="Reset contract lists, user logs and risks to defaults"
           >
-            <Info className="w-4 h-4" />
-            {showInstructions ? 'Hide' : 'Show'} Export Instructions
+            <RefreshCw className="w-3.5 h-3.5" />
+            <span>Reset Baseline</span>
           </button>
         </div>
+      </div>
 
-        {showInstructions && (
-          <div className="bg-white rounded-lg p-6 space-y-4 text-left border border-slate-200">
-            <h3 className="font-semibold text-slate-900 text-sm">How to Export Logos</h3>
-            <div className="space-y-4">
-              <p className="text-sm text-slate-600">
-                Production vectors: <code className="px-1.5 py-0.5 bg-slate-100 rounded text-xs">brand/primary/*.svg</code> (regenerate PNGs with{' '}
-                <code className="px-1.5 py-0.5 bg-slate-100 rounded text-xs">brand/export-pngs.sh</code>
-                , refine the mark with{' '}
-                <code className="px-1.5 py-0.5 bg-slate-100 rounded text-xs">brand/build-primary-mark.py</code>
-                ). Older partner directions sit under <code className="px-1.5 py-0.5 bg-slate-100 rounded text-xs">brand/archive/partner-explorations/</code>.
-              </p>
-              <div>
-                <p className="text-xs font-semibold text-slate-700 mb-2">Method 1: Screenshot from DevTools (Recommended)</p>
-                <ol className="space-y-2 text-sm text-slate-600">
-                  <li className="flex gap-3">
-                    <span className="text-slate-400 font-mono">1.</span>
-                    <span>Right-click on the logo you want → Inspect (or press F12)</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="text-slate-400 font-mono">2.</span>
-                    <span>Find element with <code className="px-1.5 py-0.5 bg-slate-100 rounded text-xs">id="kontraktus-logo-full"</code> or <code className="px-1.5 py-0.5 bg-slate-100 rounded text-xs">id="kontraktus-logo-icon"</code></span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="text-slate-400 font-mono">3.</span>
-                    <span>Right-click the element → "Capture node screenshot"</span>
-                  </li>
-                </ol>
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-slate-700 mb-2">Method 2: Regular Screenshot</p>
-                <p className="text-sm text-slate-600">Use your OS screenshot tool (Windows: Snipping Tool, Mac: Cmd+Shift+4) to capture the logo area</p>
-              </div>
-            </div>
-          </div>
+      {/* RENDER SELECTED PROTOTYPE VERSION */}
+      <div className="flex-1 flex flex-col">
+        {isHighFi ? (
+          <HighFiPrototype
+            currentUser={currentUser}
+            onLogin={handleLogin}
+            onLogout={handleLogout}
+            contracts={contracts}
+            onUploadContract={handleUploadContract}
+            onUpdateContractStatus={handleUpdateContractStatus}
+            onUpdateRiskStatus={handleUpdateRiskStatus}
+            onUpdateRiskSeverity={handleUpdateRiskSeverity}
+            users={users}
+            onCreateUser={handleCreateUser}
+            onToggleUserStatus={handleToggleUserStatus}
+            auditLogs={auditLogs}
+            currentScreen={currentScreen}
+            setScreen={setScreen}
+            selectedContractId={selectedContractId}
+            setSelectedContractId={setSelectedContractId}
+            chatHistory={chatHistory}
+            onSendChatMessage={handleSendChatMessage}
+          />
+        ) : (
+          <LowFiPrototype
+            currentUser={currentUser}
+            onLogin={handleLogin}
+            onLogout={handleLogout}
+            contracts={contracts}
+            onUploadContract={handleUploadContract}
+            onUpdateContractStatus={handleUpdateContractStatus}
+            onUpdateRiskStatus={handleUpdateRiskStatus}
+            onUpdateRiskSeverity={handleUpdateRiskSeverity}
+            users={users}
+            onCreateUser={handleCreateUser}
+            onToggleUserStatus={handleToggleUserStatus}
+            auditLogs={auditLogs}
+            currentScreen={currentScreen}
+            setScreen={setScreen}
+            selectedContractId={selectedContractId}
+            setSelectedContractId={setSelectedContractId}
+            chatHistory={chatHistory}
+            onSendChatMessage={handleSendChatMessage}
+          />
         )}
-
-        <div className="space-y-4">
-          <h2 className="text-xl font-semibold text-slate-900 text-center">Brand Guidelines</h2>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white rounded-lg p-6 border border-slate-200">
-              <h3 className="font-semibold text-slate-900 mb-4 text-sm">Colors</h3>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-lg bg-slate-950 shadow-sm"></div>
-                  <div className="text-sm">
-                    <p className="font-mono text-xs text-slate-900">#18181B</p>
-                    <p className="text-xs text-slate-500">Primary Black</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-lg bg-white border-2 border-slate-950 shadow-sm"></div>
-                  <div className="text-sm">
-                    <p className="font-mono text-xs text-slate-900">#FFFFFF</p>
-                    <p className="text-xs text-slate-500">Icon Background</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-lg bg-slate-100 border border-slate-200"></div>
-                  <div className="text-sm">
-                    <p className="font-mono text-xs text-slate-900">#F1F5F9</p>
-                    <p className="text-xs text-slate-500">Neutral BG</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg p-6 border border-slate-200">
-              <h3 className="font-semibold text-slate-900 mb-4 text-sm">Logo Variants</h3>
-              <div className="space-y-3 text-sm text-slate-600">
-                <div>
-                  <p className="font-medium text-slate-900">Primary Logo</p>
-                  <p className="text-xs">Icon + Wordmark</p>
-                  <p className="text-xs text-slate-500">Website, marketing, print</p>
-                </div>
-                <div>
-                  <p className="font-medium text-slate-900">Profile Icon</p>
-                  <p className="text-xs">Circular, icon only</p>
-                  <p className="text-xs text-slate-500">Social media, app icons</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg p-6 border border-slate-200">
-              <h3 className="font-semibold text-slate-900 mb-4 text-sm">Usage Rules</h3>
-              <ul className="space-y-2 text-sm text-slate-600">
-                <li className="flex gap-2">
-                  <span className="text-slate-950">✓</span>
-                  <span>Minimum width: 200px (full logo)</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-slate-950">✓</span>
-                  <span>Clear space: 1.5x icon height</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-slate-950">✓</span>
-                  <span>Light or white backgrounds</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-red-600">✗</span>
-                  <span>No distortion, rotation, or effects</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-red-600">✗</span>
-                  <span>Do not alter colors or proportions</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

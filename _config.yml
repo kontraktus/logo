@@ -12,6 +12,9 @@ exclude:
   - src/
   - brand/
   - package.json
+  - package-lock.json
   - pnpm-workspace.yaml
   - postcss.config.mjs
   - vite.config.ts
+  - prototype.html
+  - prototype/assets/
