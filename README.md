@@ -13,7 +13,6 @@ The canonical source for this site is [`progress-site/` in the main Kontraktus r
 - `_posts/` — weekly Markdown updates
 - `_layouts/post.html` — shared post layout
 - `assets/css/style.css` — dark dashboard styles
-- `CNAME` — custom domain mapping for GitHub Pages
 
 ## How to add weekly posts
 
@@ -63,17 +62,9 @@ The prototype workflow in the publishing mirror may add generated files under `p
 
 No backend, database, or server-side runtime is required.
 
-## Custom domain handling
+## Publishing address
 
-The previous custom hostname, `gh.kontraktus.app`, currently returns 404. GitHub Pages removed it from the repository setting during the November 2026 site update and rejected restoring it until the domain is verified for the `haresholmes` account. [GitHub's verification guide](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages) explains the required DNS TXT record. After verification, set the Pages custom domain back to `gh.kontraktus.app` and point its DNS CNAME at the account's GitHub Pages host as described in [GitHub's domain guide](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
-
-Keep `CNAME` in repository root with:
-
-```text
-gh.kontraktus.app
-```
-
-If this file is removed or changed, custom domain routing can break.
+GitHub Pages serves this project site at **https://haresholmes.eu.org/kontraktus-app/**, under the account's existing user-site domain. The repository does not set a project-specific custom domain or include a `CNAME` file. Keep links in site templates wrapped with Jekyll's `relative_url` filter so assets and posts work under `/kontraktus-app/`.
 
 ## Local preview (optional)
 
