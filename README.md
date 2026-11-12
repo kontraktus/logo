@@ -1,9 +1,9 @@
-# Kontraktus Weekly Capstone Journal (GitHub Pages)
+# Kontraktus Progress Site (GitHub Pages)
 
-This repository hosts the **Kontraktus weekly capstone update journal** on GitHub Pages.
+The canonical source for this site is [`progress-site/` in the main Kontraktus repository](https://github.com/haresholmes/kontraktus/tree/main/progress-site). The `kontraktus-app` repository remains the GitHub Pages publishing mirror so the existing domain continues to work.
 
 - Site: **https://gh.kontraktus.app**
-- Purpose: supervisor-facing CSIT321 engineering progress dashboard + weekly updates archive
+- Purpose: supervisor-facing CSIT321 engineering progress dashboard + updates archive
 - Homepage: root update dashboard (not a marketing landing page)
 
 ## Repository structure
@@ -52,6 +52,14 @@ This site is Jekyll-based and GitHub Pages compatible:
 - Posts in `_posts` are converted from Markdown to HTML.
 - `index.html` uses Liquid (`site.posts`) to render the weekly update archive (newest first).
 - Pushes to `main` are automatically built/deployed by GitHub Pages.
+
+Site edits should be committed in the main repository, then mirrored with:
+
+```bash
+git subtree push --prefix=progress-site https://github.com/haresholmes/kontraktus-app.git main
+```
+
+The prototype workflow in the publishing mirror may add generated files under `prototype/`. Before another subtree push, pull those changes into the main repository with `git subtree pull --prefix=progress-site https://github.com/haresholmes/kontraktus-app.git main` so the mirror remains a fast-forward.
 
 No backend, database, or server-side runtime is required.
 

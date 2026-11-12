@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="badge-row">
-          <span class="chip">Week {{ page.week }}</span>
+          <span class="chip">{% if page.week %}Week {{ page.week }}{% else %}Engineering update{% endif %}</span>
           <span class="chip chip-status">{{ page.status }}</span>
           <span class="chip chip-muted">{{ page.date | date: '%b %d, %Y' }}</span>
         </div>

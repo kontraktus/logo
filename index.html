@@ -22,13 +22,13 @@
           <div class="brandtitle">
             <h1>Kontraktus</h1>
             <p class="sub">Private AI Contract Intelligence Platform</p>
-            <p class="meta">CSIT321 Capstone Project · Trimester One — Planning &amp; Documentation Phase</p>
+            <p class="meta">CSIT321 Capstone Project · Local application and engineering journal</p>
           </div>
         </div>
         <div class="badge-row">
-          <span class="chip chip-status">Approved Idea</span>
+          <span class="chip chip-status">Working MVP</span>
           <span class="chip">Current Status</span>
-          <span class="chip chip-muted">Planning &amp; Feasibility</span>
+          <span class="chip chip-muted">Updated 12 Nov 2026</span>
         </div>
       </header>
 
@@ -38,23 +38,24 @@
             <h2>Homepage map</h2>
             <ul class="navlist">
               <li><a href="#overview"><span class="navnum">01</span><span class="navlabel">Overview</span></a></li>
-              <li><a href="#status"><span class="navnum">02</span><span class="navlabel">Current Trimester Status</span></a></li>
+              <li><a href="#status"><span class="navnum">02</span><span class="navlabel">Implementation status</span></a></li>
               <li><a href="#latest"><span class="navnum">03</span><span class="navlabel">Latest Update</span></a></li>
-              <li><a href="#deliverables"><span class="navnum">04</span><span class="navlabel">Documents &amp; Deliverables</span></a></li>
-              <li><a href="#timeline"><span class="navnum">05</span><span class="navlabel">Timeline</span></a></li>
-              <li><a href="#review"><span class="navnum">06</span><span class="navlabel">Supervisor Review</span></a></li>
-              <li><a href="#archive"><span class="navnum">07</span><span class="navlabel">Weekly Archive</span></a></li>
+              <li><a href="#features"><span class="navnum">04</span><span class="navlabel">Working features</span></a></li>
+              <li><a href="#deliverables"><span class="navnum">05</span><span class="navlabel">Code &amp; documentation</span></a></li>
+              <li><a href="#timeline"><span class="navnum">06</span><span class="navlabel">Milestones</span></a></li>
+              <li><a href="#review"><span class="navnum">07</span><span class="navlabel">Supervisor review</span></a></li>
+              <li><a href="#archive"><span class="navnum">08</span><span class="navlabel">Update archive</span></a></li>
             </ul>
           </div>
         </aside>
 
         <div class="main">
           <section class="section" id="status">
-            <h2 class="section-title">Current Trimester Status</h2>
+            <h2 class="section-title">Implementation status</h2>
             <div class="grid grid-3">
-              <article class="panel soft"><h3>Trimester 1 Focus</h3><p>Planning, feasibility analysis, requirements preparation, and design documentation.</p></article>
-              <article class="panel soft"><h3>Current Academic Position</h3><p>Idea approved. Team is validating scope and preparing formal deliverables for supervisor review.</p></article>
-              <article class="panel soft"><h3>Trimester 2 Target</h3><p>Build and demonstrate a working academic MVP, not a full commercial product release.</p></article>
+              <article class="panel soft"><h3>Local application</h3><p>The Python and Streamlit workspace supports contract upload, local indexing, AI analysis, human review, and PDF export.</p></article>
+              <article class="panel soft"><h3>Verification</h3><p>284 automated tests passed on 12 November 2026. The suite covers document processing, retrieval, review decisions, exports, and the web interface.</p></article>
+              <article class="panel soft"><h3>Repository</h3><p>Application code, documentation, evaluation, and this progress site now live together in the main Kontraktus repository. This site remains published at its existing address.</p></article>
             </div>
           </section>
 
@@ -64,7 +65,7 @@
             {% if latest %}
             <article class="panel soft featured">
               <div class="meta-row">
-                <span class="chip">Week {{ latest.week }}</span>
+                <span class="chip">{% if latest.week %}Week {{ latest.week }}{% else %}Engineering update{% endif %}</span>
                 <span class="chip chip-status">{{ latest.status }}</span>
                 <span class="chip chip-muted">{{ latest.date | date: "%b %d, %Y" }}</span>
               </div>
@@ -77,61 +78,53 @@
             {% endif %}
           </section>
 
-          <section class="section" id="deliverables">
-            <h2 class="section-title">Documents &amp; Deliverables</h2>
+          <section class="section" id="features">
+            <h2 class="section-title">Working features</h2>
             <div class="grid grid-3">
+              <article class="panel soft"><h3>Private contract intelligence</h3><p>PDF, DOCX, and TXT uploads are extracted, chunked, embedded, and indexed locally. Answers cite checked source text; missing clauses and risks are evaluated against the knowledge base.</p></article>
+              <article class="panel soft"><h3>Human review</h3><p>Reviewers can accept, reject, or adjust findings, add source-backed findings, record notes, and approve contracts or request changes. Analysis can be retried or cancelled while previous completed results are preserved.</p></article>
+              <article class="panel soft"><h3>Controlled exports</h3><p>PDF reports include accepted findings, source evidence, reviewer notes, and the final decision. Upload, analysis, review, and export actions check current account permissions.</p></article>
+            </div>
+          </section>
+
+          <section class="section" id="deliverables">
+            <h2 class="section-title">Code &amp; documentation</h2>
+            <div class="grid grid-3">
+              <article class="panel soft">
+                <div class="meta-row"><span class="chip chip-status">Available</span><span class="chip chip-muted">Source code</span></div>
+                <h3>Kontraktus application</h3>
+                <p>The main repository contains the Streamlit app, Python modules, tests, evaluations, and this site's source.</p>
+                <a class="btn" href="https://github.com/haresholmes/kontraktus">View main repository</a>
+              </article>
+              <article class="panel soft">
+                <div class="meta-row"><span class="chip chip-status">Available</span><span class="chip chip-muted">Design and evaluation</span></div>
+                <h3>Technical documentation</h3>
+                <p>Component design, architecture decisions, setup guidance, and evaluation results are documented beside the code.</p>
+                <a class="btn" href="https://github.com/haresholmes/kontraktus/tree/main/docs">Read documentation</a>
+              </article>
               <article class="panel soft">
                 <div class="meta-row">
                   <span class="chip chip-status">Available</span>
                   <span class="chip chip-muted">PDF + PPTX</span>
                 </div>
-                <h3>Project Proposal</h3>
-                <p>Initial Kontraktus proposal materials used for project approval and scope discussion.</p>
+                <h3>Project proposal</h3>
+                <p>Original proposal materials remain available as the historical planning baseline.</p>
                 <p class="summary">Files: Project Proposal Document · Project Proposal Supporting File / Presentation</p>
                 <div class="meta-row">
                   <a class="btn" href="{{ '/assets/docs/Contract_Intelligence_Platform.pdf' | relative_url }}" download>Download Proposal File 1</a>
                   <a class="btn" href="{{ '/assets/docs/contract_review_final%20-%20Repaired.pptx' | relative_url }}" download>Download Proposal File 2</a>
                 </div>
               </article>
-              <article class="panel soft">
-                <div class="meta-row">
-                  <span class="chip">Website Update</span>
-                  <span class="chip chip-muted">Blog Post</span>
-                </div>
-                <h3>Meeting 1 Weekly Update</h3>
-                {% assign meeting1 = site.posts | where: "week", 1 | first %}
-                <p>Website memo covering idea approval, scope alignment, planning baseline, MVP direction, and next academic steps.</p>
-                {% if meeting1 %}
-                <a class="btn" href="{{ meeting1.url | relative_url }}">Read Meeting 1 Update</a>
-                {% else %}
-                <a class="btn" href="{{ '/#archive' | relative_url }}">Read Meeting 1 Update</a>
-                {% endif %}
-              </article>
-              <article class="panel">
-                <div class="meta-row">
-                  <span class="chip">Trimester 1 Deliverables</span>
-                  <span class="chip chip-muted">In Progress</span>
-                </div>
-                <h3>Academic Documentation Track</h3>
-                <p>Planning and feasibility submission, requirements analysis, and design documentation remain the current supervision priorities.</p>
-              </article>
             </div>
           </section>
 
           <section class="section" id="timeline">
-            <h2 class="section-title">Trimester One Timeline</h2>
+            <h2 class="section-title">Project milestones</h2>
             <div class="timeline">
-              <article class="timeline-item done"><span class="timeline-status">Completed</span><strong>Week 1 — Group formation &amp; ideation</strong><p>Initial team setup and first concept shortlist.</p></article>
-              <article class="timeline-item done"><span class="timeline-status">Completed</span><strong>Week 2 — Research &amp; brainstorming</strong><p>Problem framing and direction comparison.</p></article>
-              <article class="timeline-item done"><span class="timeline-status">Completed</span><strong>Week 3 — Proposal preparation</strong><p>Drafted proposal narrative and technical intent.</p></article>
-              <article class="timeline-item done"><span class="timeline-status">Completed</span><strong>Week 4 — Idea proposal presentation &amp; approval</strong><p>Kontraktus approved as capstone project.</p></article>
-              <article class="timeline-item done"><span class="timeline-status">Completed</span><strong>Week 5 — Planning document preparation</strong><p>Planning artifacts and scope breakdown prepared.</p></article>
-              <article class="timeline-item current"><span class="timeline-status">Current</span><strong>Week 6 — Planning &amp; feasibility analysis submission</strong><p>Finalizing feasibility evidence and architecture rationale.</p></article>
-              <article class="timeline-item"><span class="timeline-status">Planned</span><strong>Week 7 — Requirements gathering</strong><p>Collecting and structuring core system requirements.</p></article>
-              <article class="timeline-item"><span class="timeline-status">Planned</span><strong>Week 8 — Requirements analysis submission</strong><p>Submitting validated requirements document.</p></article>
-              <article class="timeline-item"><span class="timeline-status">Planned</span><strong>Week 9 — First panel presentation</strong><p>Presenting progress, feasibility, and direction.</p></article>
-              <article class="timeline-item"><span class="timeline-status">Planned</span><strong>Week 10 — Design document preparation</strong><p>Preparing architecture and component-level design.</p></article>
-              <article class="timeline-item"><span class="timeline-status">Planned</span><strong>Week 11 — Design document submission</strong><p>Submitting design package for next-trimester implementation.</p></article>
+              <article class="timeline-item done"><span class="timeline-status">Completed</span><strong>Idea approval and planning</strong><p>The original proposal and first meeting update established the capstone direction.</p></article>
+              <article class="timeline-item done"><span class="timeline-status">Completed</span><strong>Local contract processing</strong><p>Upload, extraction, chunking, local embeddings, retrieval, and grounded answers are implemented.</p></article>
+              <article class="timeline-item done"><span class="timeline-status">Completed</span><strong>Risk analysis and human review</strong><p>Missing-clause and risk checks feed a review workflow with evidence, decisions, audit records, and reports.</p></article>
+              <article class="timeline-item current"><span class="timeline-status">Latest</span><strong>Access and export hardening · 12 Nov 2026</strong><p>Review work closed permission gaps in upload, analysis, and report export. The full test suite passed 284 tests.</p></article>
             </div>
           </section>
 
@@ -139,36 +132,37 @@
             <h2 class="section-title">Supervisor Review Area</h2>
             <div class="grid grid-2">
               <article class="panel">
-                <h3>What needs review</h3>
-                <p>Planning &amp; feasibility framing, MVP scope boundaries, and requirements structure.</p>
+                <h3>Application walkthrough</h3>
+                <p>Upload a sample contract, inspect cited answers and flagged clauses, then review findings and export a report.</p>
               </article>
               <article class="panel">
-                <h3>What feedback is needed</h3>
-                <p>Priority alignment between documentation depth and early prototyping breadth.</p>
+                <h3>Evidence for review</h3>
+                <p>Read the component documentation and evaluation results in the main repository, alongside the 284-test suite.</p>
               </article>
               <article class="panel">
-                <h3>Next meeting focus</h3>
-                <p>Feasibility submission readiness and requirements analysis planning checkpoint.</p>
+                <h3>Prototype</h3>
+                <p>The browser prototype remains available as a visual walkthrough. The working application runs locally from the main repository.</p>
+                <a class="btn" href="{{ '/prototype/' | relative_url }}">Open prototype</a>
               </article>
               <article class="panel">
-                <h3>Pending academic decisions</h3>
-                <p>Final confirmation of MVP scope for transition into next-trimester implementation.</p>
+                <h3>Suggested feedback</h3>
+                <p>Focus on review workflow clarity, evidence quality, evaluation coverage, and the scope of the academic MVP.</p>
               </article>
             </div>
             <article class="panel soft">
               <h3 style="margin:0 0 6px; font-size:16px; letter-spacing:-0.01em">Technical Roadmap</h3>
-              <p class="summary">The implementation architecture is being researched and will become the focus of the next trimester. Current technical planning is documented separately.</p>
+              <p class="summary">The original roadmap is retained for context; the main repository documents the implemented architecture.</p>
               <a class="btn" href="{{ '/technical-roadmap/' | relative_url }}">View Technical Roadmap</a>
             </article>
           </section>
 
           <section class="section" id="archive">
-            <h2 class="section-title">Weekly Updates Archive</h2>
+            <h2 class="section-title">Updates archive</h2>
             <div class="grid">
               {% for post in site.posts %}
               <article class="panel">
                 <div class="meta-row">
-                  <span class="chip">Week {{ post.week }}</span>
+                  <span class="chip">{% if post.week %}Week {{ post.week }}{% else %}Engineering update{% endif %}</span>
                   <span class="chip chip-status">{{ post.status }}</span>
                   <span class="chip chip-muted">{{ post.date | date: "%b %d, %Y" }}</span>
                 </div>
