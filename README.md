@@ -1,8 +1,8 @@
 # Kontraktus Progress Site (GitHub Pages)
 
-The canonical source for this site is [`progress-site/` in the main Kontraktus repository](https://github.com/haresholmes/kontraktus/tree/main/progress-site). The `kontraktus-app` repository remains the GitHub Pages publishing mirror.
+The canonical source for this site is [`progress-site/` in the main Kontraktus repository](https://github.com/haresholmes/kontraktus/tree/main/progress-site). The main repository's `gh-pages` branch publishes the site. The `kontraktus-app` repository remains an older publishing mirror.
 
-- Live site: **https://haresholmes.eu.org/kontraktus-app/**
+- Live site: **https://haresholmes.eu.org/kontraktus/**
 - Purpose: supervisor-facing CSIT321 engineering progress dashboard + updates archive
 - Homepage: root update dashboard (not a marketing landing page)
 
@@ -50,9 +50,17 @@ This site is Jekyll-based and GitHub Pages compatible:
 
 - Posts in `_posts` are converted from Markdown to HTML.
 - `index.html` uses Liquid (`site.posts`) to render the weekly update archive (newest first).
-- Pushes to `main` are automatically built/deployed by GitHub Pages.
+- Pushes to the root of `gh-pages` are built/deployed by GitHub Pages.
 
-Site edits should be committed in the main repository, then mirrored with:
+Commit site edits in the main repository, then publish its subtree to `gh-pages`:
+
+```bash
+git subtree split --prefix=progress-site -b progress-site-publish
+git push origin progress-site-publish:gh-pages
+git branch -D progress-site-publish
+```
+
+To keep the older `/kontraktus-app/` address working, also mirror the subtree:
 
 ```bash
 git subtree push --prefix=progress-site https://github.com/haresholmes/kontraktus-app.git main
@@ -64,7 +72,7 @@ No backend, database, or server-side runtime is required.
 
 ## Publishing address
 
-GitHub Pages serves this project site at **https://haresholmes.eu.org/kontraktus-app/**, under the account's existing user-site domain. The repository does not set a project-specific custom domain or include a `CNAME` file. Keep links in site templates wrapped with Jekyll's `relative_url` filter so assets and posts work under `/kontraktus-app/`.
+GitHub Pages serves this project site at **https://haresholmes.eu.org/kontraktus/**, under the account's existing user-site domain. The repository does not set a project-specific custom domain or include a `CNAME` file. Keep links in site templates wrapped with Jekyll's `relative_url` filter so assets and posts work under `/kontraktus/`.
 
 ## Local preview (optional)
 
