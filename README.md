@@ -1,8 +1,8 @@
 # Kontraktus Progress Site (GitHub Pages)
 
-The canonical source for this site is [`progress-site/` in the main Kontraktus repository](https://github.com/haresholmes/kontraktus/tree/main/progress-site). The `kontraktus-app` repository remains the GitHub Pages publishing mirror so the existing domain continues to work.
+The canonical source for this site is [`progress-site/` in the main Kontraktus repository](https://github.com/haresholmes/kontraktus/tree/main/progress-site). The `kontraktus-app` repository remains the GitHub Pages publishing mirror.
 
-- Site: **https://gh.kontraktus.app**
+- Live site: **https://haresholmes.eu.org/kontraktus-app/**
 - Purpose: supervisor-facing CSIT321 engineering progress dashboard + updates archive
 - Homepage: root update dashboard (not a marketing landing page)
 
@@ -64,6 +64,8 @@ The prototype workflow in the publishing mirror may add generated files under `p
 No backend, database, or server-side runtime is required.
 
 ## Custom domain handling
+
+The previous custom hostname, `gh.kontraktus.app`, currently returns 404. GitHub Pages removed it from the repository setting during the November 2026 site update and rejected restoring it until the domain is verified for the `haresholmes` account. [GitHub's verification guide](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages) explains the required DNS TXT record. After verification, set the Pages custom domain back to `gh.kontraktus.app` and point its DNS CNAME at the account's GitHub Pages host as described in [GitHub's domain guide](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
 
 Keep `CNAME` in repository root with:
 
